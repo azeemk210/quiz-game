@@ -37,10 +37,17 @@ export default function QuestionsPage() {
       const { data: qs } = await supabase
         .from('questions')
         .select('id, question_text, options, correct_answer_index, time_limit')
-        .eq('quiz_id', quiz.id)
-        .order('created_at', { ascending: true });
+        .eq('quiz_id', quiz.id);
 
-      if (qs) setQuestions(qs);
+      if (qs) {
+        // Sort by the Q.N number embedded in question_text (e.g. "Q.1 ...", "Q.12 ...")
+        const sorted = [...qs].sort((a, b) => {
+          const numA = parseInt(a.question_text.match(/Q\.(\d+)/)?.[1] ?? '0', 10);
+          const numB = parseInt(b.question_text.match(/Q\.(\d+)/)?.[1] ?? '0', 10);
+          return numA - numB;
+        });
+        setQuestions(sorted);
+      }
       setLoading(false);
     };
 
