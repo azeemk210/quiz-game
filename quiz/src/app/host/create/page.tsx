@@ -96,7 +96,7 @@ export default function CreateHost() {
           quiz_id: quiz.id,
           question_text: "Q.11 Among these, who was named Abdul Kaaba?\nان میں سے کس کا نام عبد الکعبہ تھا؟\nइनमें से किसका नाम अब्दुल काबा था?",
           options: ["Hazrat Umar", "Hazrat Abu Bakr", "Hazrat Ali", "Hazrat Umar"],
-          correct_answer_index: 0,
+          correct_answer_index: 1,
           time_limit: 15
         },
         {
@@ -117,7 +117,7 @@ export default function CreateHost() {
           quiz_id: quiz.id,
           question_text: "Q.14 For whose mother did the Prophet ﷺ make dua?\nنبی ﷺ نے کس کی والدہ کے حق میں دعا کی؟\nनबी ﷺ ने किसकी वालिदा के लिए दुआ की?",
           options: ["Hazrat Abu Bakr RZ", "Hazrat Usman RZ", "Hazrat Ali RZ", "Hazrat Umar RZ"],
-          correct_answer_index: 3,
+          correct_answer_index: 0,
           time_limit: 15
         },
         {
