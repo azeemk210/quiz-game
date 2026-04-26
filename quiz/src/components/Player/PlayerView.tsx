@@ -18,6 +18,7 @@ export default function PlayerView() {
   const [lastResult, setLastResult] = useState<{ correct: boolean; points: number } | null>(null);
   const [allPlayers, setAllPlayers] = useState<Player[]>([]);
   const [timeLeft, setTimeLeft] = useState<number>(0);
+  const [restoringSession, setRestoringSession] = useState(true);
 
   useEffect(() => {
     if (!gameId || !player || gameState !== 'FINISHED') return;
@@ -32,30 +33,73 @@ export default function PlayerView() {
   // Handle re-joining from localStorage
   useEffect(() => {
     const savedSession = localStorage.getItem('quiz_session');
-    if (savedSession) {
-      try {
-        const { gameId: sGameId, player: sPlayer } = JSON.parse(savedSession);
+    if (!savedSession) {
+      setRestoringSession(false);
+      return;
+    }
+
+    try {
+      const { gameId: sGameId, player: sPlayer } = JSON.parse(savedSession);
+      
+      const checkGame = async () => {
+        const { data: session } = await supabase
+          .from('game_sessions')
+          .select('*, quizzes(title)')
+          .eq('id', sGameId)
+          .single();
         
-        // Check if game is still active
-        const checkGame = async () => {
-          const { data: session } = await supabase
-            .from('game_sessions')
-            .select('status')
-            .eq('id', sGameId)
+        if (session && session.status !== 'FINISHED') {
+          // Re-fetch player to get latest score
+          const { data: pData } = await supabase
+            .from('players')
+            .select('*')
+            .eq('id', sPlayer.id)
             .single();
-          
-          if (session && session.status !== 'FINISHED') {
+
+          if (pData) {
             setGameId(sGameId);
-            setPlayer(sPlayer);
-            setGameState(session.status === 'LOBBY' ? 'WAITING' : 'QUESTION');
-          } else {
-            localStorage.removeItem('quiz_session');
+            setPlayer(pData);
+            
+            if (session.status === 'IN_PROGRESS' && session.current_question_id) {
+              // Fetch current question details if game is in progress
+              const { data: qData } = await supabase
+                .from('questions')
+                .select('*')
+                .eq('id', session.current_question_id)
+                .single();
+              
+              if (qData) {
+                // Check if user already answered this question
+                const { data: ansData } = await supabase
+                  .from('answers')
+                  .select('id')
+                  .eq('player_id', pData.id)
+                  .eq('question_id', qData.id)
+                  .maybeSingle();
+
+                setGameState('QUESTION');
+                setCurrentQuestion({
+                  questionId: qData.id,
+                  question_text: qData.question_text,
+                  options: qData.options,
+                  timeLimit: qData.time_limit,
+                  // We don't have endTime here, but Host will re-broadcast it via presence
+                });
+                setHasAnswered(!!ansData);
+              }
+            } else {
+              setGameState(session.status === 'LOBBY' ? 'WAITING' : 'QUESTION');
+            }
           }
-        };
-        checkGame();
-      } catch (e) {
-        console.error('Failed to restore session:', e);
-      }
+        } else {
+          localStorage.removeItem('quiz_session');
+        }
+        setRestoringSession(false);
+      };
+      checkGame();
+    } catch (e) {
+      console.error('Failed to restore session:', e);
+      setRestoringSession(false);
     }
   }, []);
 
@@ -121,14 +165,19 @@ export default function PlayerView() {
   }, [gameId, player]);
 
   useEffect(() => {
-    if (gameState !== 'QUESTION' || timeLeft <= 0) return;
+    if (gameState !== 'QUESTION' || !currentQuestion?.endTime) return;
 
     const timer = setInterval(() => {
-      setTimeLeft((prev) => Math.max(0, prev - 1));
-    }, 1000);
+      const remaining = Math.max(0, Math.ceil((currentQuestion.endTime - Date.now()) / 1000));
+      setTimeLeft(remaining);
+      
+      if (remaining <= 0) {
+        clearInterval(timer);
+      }
+    }, 500);
 
     return () => clearInterval(timer);
-  }, [gameState, timeLeft]);
+  }, [gameState, currentQuestion?.endTime]);
 
   const handleJoin = (id: string, p: Player) => {
     setGameId(id);
@@ -185,6 +234,15 @@ export default function PlayerView() {
       }
     }
   };
+
+  if (restoringSession) {
+    return (
+      <div className="screen-container bg-kahoot-purple flex flex-col items-center justify-center text-white">
+        <div className="w-16 h-16 border-8 border-white/20 border-t-white rounded-full animate-spin mb-6" />
+        <h2 className="text-2xl font-black italic animate-pulse uppercase tracking-widest">Reconnecting...</h2>
+      </div>
+    );
+  }
 
   if (!gameId || !player) {
     return <JoinGame onJoin={handleJoin} />;

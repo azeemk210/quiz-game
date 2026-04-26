@@ -16,12 +16,40 @@ interface HostViewProps {
 
 export default function HostView({ initialSession, questions }: HostViewProps) {
   const [status, setStatus] = useState<GameStatus>(initialSession.status);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(-1);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(() => {
+    if (initialSession.status === 'IN_PROGRESS' && initialSession.current_question_id) {
+      return questions.findIndex(q => q.id === initialSession.current_question_id);
+    }
+    return -1;
+  });
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
   const [answerCount, setAnswerCount] = useState(0);
   const [channel, setChannel] = useState<any>(null);
   const [currentEndTime, setCurrentEndTime] = useState<number>(0);
+
+  // Recovery logic for Host timer
+  useEffect(() => {
+    if (status === 'IN_PROGRESS' && currentQuestionIndex >= 0) {
+      const savedHostState = localStorage.getItem(`host_state_${initialSession.id}`);
+      if (savedHostState) {
+        const { endTime, index } = JSON.parse(savedHostState);
+        if (index === currentQuestionIndex && endTime > Date.now()) {
+          setCurrentEndTime(endTime);
+        }
+      }
+    }
+  }, []);
+
+  // Update localStorage when state changes
+  useEffect(() => {
+    if (status === 'IN_PROGRESS' && currentQuestionIndex >= 0 && currentEndTime > 0) {
+      localStorage.setItem(`host_state_${initialSession.id}`, JSON.stringify({
+        endTime: currentEndTime,
+        index: currentQuestionIndex
+      }));
+    }
+  }, [status, currentQuestionIndex, currentEndTime, initialSession.id]);
 
   // Refs for listeners to avoid stale closures
   const statusRef = useRef(status);
