@@ -29,6 +29,49 @@ export default function PlayerView() {
     fetchAll();
   }, [gameId, player, gameState]);
 
+  // Handle re-joining from localStorage
+  useEffect(() => {
+    const savedSession = localStorage.getItem('quiz_session');
+    if (savedSession) {
+      try {
+        const { gameId: sGameId, player: sPlayer } = JSON.parse(savedSession);
+        
+        // Check if game is still active
+        const checkGame = async () => {
+          const { data: session } = await supabase
+            .from('game_sessions')
+            .select('status')
+            .eq('id', sGameId)
+            .single();
+          
+          if (session && session.status !== 'FINISHED') {
+            setGameId(sGameId);
+            setPlayer(sPlayer);
+            setGameState(session.status === 'LOBBY' ? 'WAITING' : 'QUESTION');
+          } else {
+            localStorage.removeItem('quiz_session');
+          }
+        };
+        checkGame();
+      } catch (e) {
+        console.error('Failed to restore session:', e);
+      }
+    }
+  }, []);
+
+  // Prevent accidental refresh
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (gameState !== 'FINISHED' && gameId && player) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [gameState, gameId, player]);
+
   useEffect(() => {
     if (!gameId || !player) return;
 
@@ -90,6 +133,7 @@ export default function PlayerView() {
   const handleJoin = (id: string, p: Player) => {
     setGameId(id);
     setPlayer(p);
+    localStorage.setItem('quiz_session', JSON.stringify({ gameId: id, player: p }));
   };
 
   const submitAnswer = async (index: number) => {

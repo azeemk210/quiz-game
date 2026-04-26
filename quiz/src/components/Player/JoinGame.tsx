@@ -20,12 +20,12 @@ export default function JoinGame({ onJoin }: JoinGameProps) {
     setError('');
 
     try {
-      // Find game session by PIN
+      // Find game session by PIN (allow joining during LOBBY or IN_PROGRESS)
       const { data: session, error: sessionError } = await supabase
         .from('game_sessions')
         .select('*')
         .eq('pin', pin)
-        .eq('status', 'LOBBY')
+        .in('status', ['LOBBY', 'IN_PROGRESS'])
         .single();
 
       if (sessionError || !session) {
@@ -35,16 +35,31 @@ export default function JoinGame({ onJoin }: JoinGameProps) {
       // Check if nickname is taken in this game
       const { data: existingPlayer } = await supabase
         .from('players')
-        .select('id')
+        .select('*')
         .eq('game_id', session.id)
         .eq('nickname', nickname)
-        .single();
+        .maybeSingle();
 
       if (existingPlayer) {
-        throw new Error('Nickname already taken.');
+        // Check if this is the same player re-joining
+        const savedSession = localStorage.getItem('quiz_session');
+        let canRejoin = false;
+        if (savedSession) {
+          const { player: sPlayer } = JSON.parse(savedSession);
+          if (sPlayer.id === existingPlayer.id) {
+            canRejoin = true;
+          }
+        }
+
+        if (canRejoin) {
+          onJoin(session.id, existingPlayer);
+          return;
+        } else {
+          throw new Error('Nickname already taken by another player.');
+        }
       }
 
-      // Join game
+      // Join game as new player
       const { data: player, error: joinError } = await supabase
         .from('players')
         .insert({

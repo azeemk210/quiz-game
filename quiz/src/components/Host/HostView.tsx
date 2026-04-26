@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/lib/supabase';
 import { GameSession, Question, Player, GameStatus } from '@/types/game';
 import Lobby from './Lobby';
@@ -23,6 +23,15 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
   const [channel, setChannel] = useState<any>(null);
   const [currentEndTime, setCurrentEndTime] = useState<number>(0);
 
+  // Refs for listeners to avoid stale closures
+  const statusRef = useRef(status);
+  const indexRef = useRef(currentQuestionIndex);
+  const endTimeRef = useRef(currentEndTime);
+
+  useEffect(() => { statusRef.current = status; }, [status]);
+  useEffect(() => { indexRef.current = currentQuestionIndex; }, [currentQuestionIndex]);
+  useEffect(() => { endTimeRef.current = currentEndTime; }, [currentEndTime]);
+
   // Subscribe to players and setup broadcast channel
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -37,9 +46,31 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
 
     // Setup the main game channel for broadcasting
     const gameChannel = supabase.channel(`game-${initialSession.id}`);
-    gameChannel.subscribe((status) => {
-      console.log(`Main game channel status: ${status}`);
-    });
+    
+    gameChannel
+      .on('presence', { event: 'join' }, ({ newPresences }) => {
+        // Use refs to get latest state
+        if (statusRef.current === 'IN_PROGRESS' && indexRef.current >= 0) {
+          const currentQ = questions[indexRef.current];
+          gameChannel.send({
+            type: 'broadcast',
+            event: 'QUESTION_START',
+            payload: { 
+              questionId: currentQ.id,
+              question_text: currentQ.question_text,
+              questionText: currentQ.question_text,
+              options: currentQ.options,
+              startTime: Date.now(),
+              endTime: endTimeRef.current,
+              timeLimit: currentQ.time_limit
+            }
+          });
+        }
+      })
+      .subscribe((status) => {
+        console.log(`Main game channel status: ${status}`);
+      });
+    
     setChannel(gameChannel);
 
     const playerChannel = supabase
@@ -61,6 +92,19 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
       supabase.removeChannel(playerChannel);
     };
   }, [initialSession.id]);
+
+  // Prevent accidental refresh
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (status !== 'FINISHED' && status !== 'LOBBY') {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [status]);
 
   const startGame = async () => {
     const firstQuestion = questions[0];
