@@ -17,6 +17,7 @@ export default function PlayerView() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const [lastResult, setLastResult] = useState<{ correct: boolean; points: number } | null>(null);
   const [allPlayers, setAllPlayers] = useState<Player[]>([]);
+  const [timeLeft, setTimeLeft] = useState<number>(0);
 
   useEffect(() => {
     if (!gameId || !player || gameState !== 'FINISHED') return;
@@ -46,14 +47,20 @@ export default function PlayerView() {
         setCurrentQuestion(payload);
         setHasAnswered(false);
         setLastResult(null);
+        
+        // Initialize timer
+        const elapsed = Math.floor((Date.now() - payload.startTime) / 1000);
+        setTimeLeft(Math.max(0, payload.timeLimit - elapsed));
       })
       .on('broadcast', { event: 'QUESTION_END' }, () => {
         console.log('Received QUESTION_END');
         setGameState('RESULT');
+        setTimeLeft(0);
       })
       .on('broadcast', { event: 'GAME_FINISHED' }, () => {
         console.log('Received GAME_FINISHED');
         setGameState('FINISHED');
+        setTimeLeft(0);
       })
       .subscribe(async (status) => {
         console.log(`Player game channel status: ${status}`);
@@ -66,6 +73,16 @@ export default function PlayerView() {
       supabase.removeChannel(channel);
     };
   }, [gameId, player]);
+
+  useEffect(() => {
+    if (gameState !== 'QUESTION' || timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => Math.max(0, prev - 1));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [gameState, timeLeft]);
 
   const handleJoin = (id: string, p: Player) => {
     setGameId(id);
@@ -185,7 +202,20 @@ export default function PlayerView() {
               ) : (
                 <div className="flex-1 flex flex-col overflow-hidden w-full max-w-4xl mx-auto">
                   {/* Question Box — grows to fill remaining space */}
-                  <div className="flex-1 flex items-center justify-center p-3">
+                  <div className="flex-1 flex flex-col items-center justify-center p-3 relative">
+                    {/* Timer Circle */}
+                    {!hasAnswered && (
+                      <motion.div 
+                        animate={timeLeft <= 5 ? { scale: [1, 1.1, 1] } : {}}
+                        transition={{ repeat: Infinity, duration: 0.5 }}
+                        className={`absolute top-0 right-4 w-14 h-14 rounded-full border-4 ${
+                          timeLeft <= 5 ? 'border-kahoot-red text-kahoot-red' : 'border-kahoot-purple text-kahoot-purple'
+                        } flex items-center justify-center text-xl font-black bg-white shadow-xl z-20 transition-colors`}
+                      >
+                        {timeLeft}
+                      </motion.div>
+                    )}
+                    
                     <div className="bg-white px-4 py-4 md:p-8 rounded-2xl shadow-lg border-b-4 border-gray-200 text-center w-full">
                       <h2 
                         className="font-black text-gray-800 leading-snug whitespace-pre-wrap break-words mx-auto"

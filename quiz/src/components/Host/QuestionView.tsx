@@ -59,9 +59,15 @@ export default function QuestionView({
 
       {/* Middle section with Timer and Image placeholder */}
       <div className="flex flex-1 items-center justify-between gap-4 mb-4 overflow-hidden">
-        <div className="w-20 h-20 md:w-32 md:h-32 rounded-full border-4 md:border-8 border-kahoot-purple flex-shrink-0 flex items-center justify-center text-3xl md:text-4xl font-black text-kahoot-purple bg-white">
+        <motion.div 
+          animate={timeLeft <= 5 ? { scale: [1, 1.05, 1] } : {}}
+          transition={{ repeat: Infinity, duration: 0.5 }}
+          className={`w-20 h-20 md:w-32 md:h-32 rounded-full border-4 md:border-8 ${
+            timeLeft <= 5 ? 'border-kahoot-red text-kahoot-red' : 'border-kahoot-purple text-kahoot-purple'
+          } flex-shrink-0 flex items-center justify-center text-3xl md:text-4xl font-black bg-white transition-colors`}
+        >
           {timeLeft}
-        </div>
+        </motion.div>
         
         <div className="flex-1 max-w-2xl h-full bg-gray-200 rounded-xl flex items-center justify-center border-4 border-white shadow-lg overflow-hidden">
            <span className="text-gray-400 font-bold">Quiz Image</span>
