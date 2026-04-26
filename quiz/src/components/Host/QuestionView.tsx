@@ -10,6 +10,7 @@ interface QuestionViewProps {
   currentIndex: number;
   onTimeUp: () => void;
   answerCount: number;
+  endTime: number;
 }
 
 export default function QuestionView({ 
@@ -17,22 +18,23 @@ export default function QuestionView({
   totalQuestions, 
   currentIndex, 
   onTimeUp,
-  answerCount 
+  answerCount,
+  endTime
 }: QuestionViewProps) {
-  const [timeLeft, setTimeLeft] = useState(question.time_limit);
+  const [timeLeft, setTimeLeft] = useState(Math.max(0, Math.ceil((endTime - Date.now()) / 1000)));
 
   useEffect(() => {
-    if (timeLeft <= 0) {
-      onTimeUp();
-      return;
-    }
-
     const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-    }, 1000);
+      const remaining = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+      setTimeLeft(remaining);
+      if (remaining <= 0) {
+        onTimeUp();
+        clearInterval(timer);
+      }
+    }, 500); // Check more frequently for better precision
 
     return () => clearInterval(timer);
-  }, [timeLeft, onTimeUp]);
+  }, [endTime, onTimeUp]);
 
   const colors = ['bg-kahoot-red', 'bg-kahoot-blue', 'bg-kahoot-yellow', 'bg-kahoot-green'];
   const shapes = ['▲', '◆', '●', '■'];

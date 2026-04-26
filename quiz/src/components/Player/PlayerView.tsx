@@ -48,9 +48,12 @@ export default function PlayerView() {
         setHasAnswered(false);
         setLastResult(null);
         
-        // Initialize timer
-        const elapsed = Math.floor((Date.now() - payload.startTime) / 1000);
-        setTimeLeft(Math.max(0, payload.timeLimit - elapsed));
+        // Initialize timer based on absolute end time
+        const updateTimer = () => {
+          const remaining = Math.max(0, Math.ceil((payload.endTime - Date.now()) / 1000));
+          setTimeLeft(remaining);
+        };
+        updateTimer();
       })
       .on('broadcast', { event: 'QUESTION_END' }, () => {
         console.log('Received QUESTION_END');

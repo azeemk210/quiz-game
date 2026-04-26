@@ -21,6 +21,7 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
   const [players, setPlayers] = useState<Player[]>([]);
   const [answerCount, setAnswerCount] = useState(0);
   const [channel, setChannel] = useState<any>(null);
+  const [currentEndTime, setCurrentEndTime] = useState<number>(0);
 
   // Subscribe to players and setup broadcast channel
   useEffect(() => {
@@ -76,6 +77,9 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
       setCurrentQuestionIndex(0);
       setAnswerCount(0);
       
+      const endTime = Date.now() + (firstQuestion.time_limit * 1000);
+      setCurrentEndTime(endTime);
+      
       // Broadcast question start
       channel.send({
         type: 'broadcast',
@@ -86,6 +90,7 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
           questionText: firstQuestion.question_text,
           options: firstQuestion.options,
           startTime: Date.now(),
+          endTime: endTime,
           timeLimit: firstQuestion.time_limit
         }
       });
@@ -105,6 +110,9 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
       setShowLeaderboard(false);
       setAnswerCount(0);
 
+      const endTime = Date.now() + (nextQ.time_limit * 1000);
+      setCurrentEndTime(endTime);
+
       channel.send({
         type: 'broadcast',
         event: 'QUESTION_START',
@@ -114,6 +122,7 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
           questionText: nextQ.question_text,
           options: nextQ.options,
           startTime: Date.now(),
+          endTime: endTime,
           timeLimit: nextQ.time_limit
         }
       });
@@ -203,6 +212,7 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
         totalQuestions={questions.length}
         onTimeUp={handleTimeUp}
         answerCount={answerCount}
+        endTime={currentEndTime}
       />
     );
   }
