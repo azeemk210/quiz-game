@@ -35,7 +35,14 @@ export default function Leaderboard({ players, onNext, isLastQuestion }: Leaderb
               </span>
               <span className="text-2xl font-bold text-gray-800">{player.nickname}</span>
             </div>
-            <span className="text-2xl font-black text-kahoot-blue">{Math.round(player.score)}</span>
+            <div className="flex flex-col items-end">
+              <span className="text-2xl font-black text-kahoot-blue">{Math.round(player.score)}</span>
+              {typeof (player as any).correctCount === 'number' && (
+                <span className="text-xs font-bold text-kahoot-green uppercase tracking-tighter">
+                  {(player as any).correctCount} Correct
+                </span>
+              )}
+            </div>
           </motion.div>
         ))}
       </div>

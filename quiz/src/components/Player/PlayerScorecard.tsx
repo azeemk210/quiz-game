@@ -67,6 +67,19 @@ export default function PlayerScorecard({ playerId, gameId }: { playerId: string
     };
 
     fetchScorecard();
+
+    // Listen for new answers to update live
+    const channel = supabase.channel(`player-scorecard-${playerId}`)
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'answers', filter: `player_id=eq.${playerId}` },
+        () => fetchScorecard()
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [playerId, gameId]);
 
   if (loading) return <div className="p-8 text-center animate-pulse">Generating your scorecard...</div>;

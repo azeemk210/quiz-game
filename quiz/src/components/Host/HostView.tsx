@@ -63,11 +63,24 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
   // Subscribe to players and setup broadcast channel
   useEffect(() => {
     const fetchPlayers = async () => {
-      const { data } = await supabase
+      const { data: pData } = await supabase
         .from('players')
         .select('*')
         .eq('game_id', initialSession.id);
-      if (data) setPlayers(data);
+      
+      const { data: aData } = await supabase
+        .from('answers')
+        .select('player_id, is_correct')
+        .eq('game_id', initialSession.id);
+
+      if (pData) {
+        const answers = aData || [];
+        const playersWithStats = pData.map(p => ({
+          ...p,
+          correctCount: answers.filter(a => a.player_id === p.id && a.is_correct).length
+        }));
+        setPlayers(playersWithStats);
+      }
     };
 
     fetchPlayers();
@@ -80,6 +93,7 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
         // Use refs to get latest state
         if (statusRef.current === 'IN_PROGRESS' && indexRef.current >= 0) {
           const currentQ = questions[indexRef.current];
+          const remainingTime = Math.max(0, (endTimeRef.current - Date.now()) / 1000);
           gameChannel.send({
             type: 'broadcast',
             event: 'QUESTION_START',
@@ -88,12 +102,14 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
               question_text: currentQ.question_text,
               questionText: currentQ.question_text,
               options: currentQ.options,
-              startTime: Date.now(),
-              endTime: endTimeRef.current,
-              timeLimit: currentQ.time_limit
+              timeLimit: currentQ.time_limit,
+              remainingTime: remainingTime
             }
           });
         }
+      })
+      .on('broadcast', { event: 'ANSWER_SUBMITTED' }, () => {
+        setAnswerCount((prev) => prev + 1);
       })
       .subscribe((status) => {
         console.log(`Main game channel status: ${status}`);
@@ -111,7 +127,10 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
       .on(
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'answers', filter: `game_id=eq.${initialSession.id}` },
-        () => setAnswerCount((prev) => prev + 1)
+        () => {
+          setAnswerCount((prev) => prev + 1);
+          fetchPlayers(); // Re-fetch to get latest correct counts
+        }
       )
       .subscribe();
 
@@ -161,9 +180,8 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
           question_text: firstQuestion.question_text,
           questionText: firstQuestion.question_text,
           options: firstQuestion.options,
-          startTime: Date.now(),
-          endTime: endTime,
-          timeLimit: firstQuestion.time_limit
+          timeLimit: firstQuestion.time_limit,
+          remainingTime: firstQuestion.time_limit
         }
       });
     }
@@ -193,9 +211,8 @@ export default function HostView({ initialSession, questions }: HostViewProps) {
           question_text: nextQ.question_text,
           questionText: nextQ.question_text,
           options: nextQ.options,
-          startTime: Date.now(),
-          endTime: endTime,
-          timeLimit: nextQ.time_limit
+          timeLimit: nextQ.time_limit,
+          remainingTime: nextQ.time_limit
         }
       });
     } else {

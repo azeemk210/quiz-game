@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/lib/supabase';
 import { Player, Question } from '@/types/game';
 import JoinGame from './JoinGame';
@@ -19,6 +19,18 @@ export default function PlayerView() {
   const [allPlayers, setAllPlayers] = useState<Player[]>([]);
   const [timeLeft, setTimeLeft] = useState<number>(0);
   const [restoringSession, setRestoringSession] = useState(true);
+  const [scoreAtStartOfQuestion, setScoreAtStartOfQuestion] = useState<number>(0);
+
+  const currentQuestionIdRef = useRef<string | null>(null);
+
+  // Keep ref strictly in sync immediately
+  const updateCurrentQuestion = (val: any) => {
+    setCurrentQuestion((prev: any) => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      currentQuestionIdRef.current = next?.questionId || null;
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (!gameId || !player || gameState !== 'FINISHED') return;
@@ -32,7 +44,7 @@ export default function PlayerView() {
 
   // Handle re-joining from localStorage
   useEffect(() => {
-    const savedSession = localStorage.getItem('quiz_session');
+    const savedSession = sessionStorage.getItem('quiz_session');
     if (!savedSession) {
       setRestoringSession(false);
       return;
@@ -57,8 +69,17 @@ export default function PlayerView() {
             .single();
 
           if (pData) {
+            // Also fetch correct answers count
+            const { count } = await supabase
+              .from('answers')
+              .select('*', { count: 'exact', head: true })
+              .eq('player_id', sPlayer.id)
+              .eq('game_id', sGameId)
+              .eq('is_correct', true);
+
             setGameId(sGameId);
-            setPlayer(pData);
+            setPlayer({ ...pData, correctCount: count || 0 } as any);
+            setScoreAtStartOfQuestion(pData.score);
             
             if (session.status === 'IN_PROGRESS' && session.current_question_id) {
               // Fetch current question details if game is in progress
@@ -72,27 +93,41 @@ export default function PlayerView() {
                 // Check if user already answered this question
                 const { data: ansData } = await supabase
                   .from('answers')
-                  .select('id')
+                  .select('*')
                   .eq('player_id', pData.id)
                   .eq('question_id', qData.id)
                   .maybeSingle();
 
-                setGameState('QUESTION');
-                setCurrentQuestion({
+                const savedEndTime = sessionStorage.getItem(`player_${sGameId}_q_${qData.id}_endtime`);
+                const parsedEndTime = savedEndTime ? parseInt(savedEndTime) : undefined;
+
+                if (parsedEndTime && parsedEndTime <= Date.now()) {
+                  setGameState('RESULT');
+                } else {
+                  setGameState('QUESTION');
+                }
+
+                updateCurrentQuestion({
                   questionId: qData.id,
                   question_text: qData.question_text,
                   options: qData.options,
                   timeLimit: qData.time_limit,
-                  // We don't have endTime here, but Host will re-broadcast it via presence
+                  endTime: parsedEndTime
                 });
-                setHasAnswered(!!ansData);
+                
+                if (ansData) {
+                  setHasAnswered(true);
+                  setLastResult({ correct: ansData.is_correct, points: ansData.points });
+                } else {
+                  setHasAnswered(false);
+                }
               }
             } else {
               setGameState(session.status === 'LOBBY' ? 'WAITING' : 'QUESTION');
             }
           }
         } else {
-          localStorage.removeItem('quiz_session');
+          sessionStorage.removeItem('quiz_session');
         }
         setRestoringSession(false);
       };
@@ -130,17 +165,36 @@ export default function PlayerView() {
     channel
       .on('broadcast', { event: 'QUESTION_START' }, ({ payload }) => {
         console.log('Received QUESTION_START:', payload);
-        setGameState('QUESTION');
-        setCurrentQuestion(payload);
-        setHasAnswered(false);
-        setLastResult(null);
         
-        // Initialize timer based on absolute end time
-        const updateTimer = () => {
-          const remaining = Math.max(0, Math.ceil((payload.endTime - Date.now()) / 1000));
-          setTimeLeft(remaining);
-        };
-        updateTimer();
+        const isSameQuestion = currentQuestionIdRef.current === payload.questionId;
+        const localEndTime = Date.now() + payload.remainingTime * 1000;
+        sessionStorage.setItem(`player_${gameId}_q_${payload.questionId}_endtime`, localEndTime.toString());
+
+        const remaining = Math.max(0, Math.ceil(payload.remainingTime));
+        if (remaining <= 0) {
+          setGameState('RESULT');
+        } else {
+          setGameState('QUESTION');
+        }
+        updateCurrentQuestion((prev: any) => {
+           if (isSameQuestion && prev) {
+               return { ...prev, endTime: localEndTime };
+           }
+           return { ...payload, endTime: localEndTime };
+        });
+
+        if (!isSameQuestion) {
+          setHasAnswered(false);
+          setLastResult(null);
+          // Store the score before this question's points are added
+          setScoreAtStartOfQuestion(player?.score || 0);
+        } else if (hasAnswered) {
+          // Safeguard: if we already answered, ensure we stay in correct UI state
+          // No need to reset anything.
+        }
+        
+        // Initialize timer based on local end time
+        setTimeLeft(Math.max(0, Math.ceil(payload.remainingTime)));
       })
       .on('broadcast', { event: 'QUESTION_END' }, () => {
         console.log('Received QUESTION_END');
@@ -167,11 +221,20 @@ export default function PlayerView() {
   useEffect(() => {
     if (gameState !== 'QUESTION' || !currentQuestion?.endTime) return;
 
-    const timer = setInterval(() => {
+    const checkTime = () => {
       const remaining = Math.max(0, Math.ceil((currentQuestion.endTime - Date.now()) / 1000));
       setTimeLeft(remaining);
-      
       if (remaining <= 0) {
+        setGameState('RESULT');
+      }
+      return remaining;
+    };
+
+    const initial = checkTime();
+    if (initial <= 0) return;
+
+    const timer = setInterval(() => {
+      if (checkTime() <= 0) {
         clearInterval(timer);
       }
     }, 500);
@@ -182,14 +245,14 @@ export default function PlayerView() {
   const handleJoin = (id: string, p: Player) => {
     setGameId(id);
     setPlayer(p);
-    localStorage.setItem('quiz_session', JSON.stringify({ gameId: id, player: p }));
+    sessionStorage.setItem('quiz_session', JSON.stringify({ gameId: id, player: p }));
   };
 
   const submitAnswer = async (index: number) => {
-    if (hasAnswered || !currentQuestion || !player || !gameId) return;
+    if (hasAnswered || !currentQuestion || !player || !gameId || timeLeft <= 0 || gameState !== 'QUESTION') return;
 
     setHasAnswered(true);
-    const timeTaken = (Date.now() - currentQuestion.startTime) / 1000;
+    const timeTaken = Math.max(0, currentQuestion.timeLimit - timeLeft);
     
     // Fetch question to check answer (ideally this should be secure)
     const { data: qData } = await supabase
@@ -222,17 +285,33 @@ export default function PlayerView() {
     });
 
     // Update total score in players table using the RPC
-    if (points > 0) {
-      const { error: rpcError } = await supabase.rpc('increment_score', { 
-        player_uuid: player.id, 
-        points_to_add: points 
-      });
+    const { error: rpcError } = await supabase.rpc('increment_score', { 
+      player_uuid: player.id, 
+      points_to_add: points 
+    });
 
-      if (!rpcError) {
-        // Update local state so the next question uses the correct total
-        setPlayer(prev => prev ? { ...prev, score: prev.score + points } : null);
-      }
+    if (!rpcError) {
+      // Update local state so the next question uses the correct total
+      setPlayer(prev => prev ? { 
+        ...prev, 
+        score: prev.score + points,
+        correctCount: (prev as any).correctCount + (isCorrect ? 1 : 0)
+      } : null);
     }
+
+    // Broadcast answer to host so it updates answerCount immediately
+    supabase.channel(`game-${gameId}`).send({
+      type: 'broadcast',
+      event: 'ANSWER_SUBMITTED',
+      payload: { playerId: player.id }
+    });
+  };
+
+  const leaveGame = () => {
+    sessionStorage.removeItem('quiz_session');
+    setGameId(null);
+    setPlayer(null);
+    setGameState('WAITING');
   };
 
   if (restoringSession) {
@@ -254,10 +333,19 @@ export default function PlayerView() {
         <Podium players={allPlayers} showHomeButton={false} />
         <div className="flex flex-col items-center px-4 relative z-10 gap-4 mt-8 pb-10">
           <button 
-            onClick={() => window.location.href = '/'}
+            onClick={() => {
+              leaveGame();
+              window.location.href = '/';
+            }}
             className="w-full max-w-2xl bg-white text-kahoot-purple py-4 rounded-2xl font-black text-xl shadow-xl hover:scale-105 transition-transform"
           >
             Back to Home
+          </button>
+          <button 
+            onClick={leaveGame}
+            className="w-full max-w-2xl bg-kahoot-red text-white py-4 rounded-2xl font-black text-xl shadow-xl hover:scale-105 transition-transform mt-2"
+          >
+            Leave Game
           </button>
           <PlayerScorecard playerId={player.id} gameId={gameId} />
         </div>
@@ -268,12 +356,24 @@ export default function PlayerView() {
   return (
     <div className="screen-container bg-white">
       {/* Header */}
-      <div className="bg-gray-100 p-4 flex justify-between items-center shadow-sm flex-none">
+      <div className="bg-gray-100 p-4 flex justify-between items-center shadow-sm flex-none relative z-30">
         <span className="font-bold text-gray-700 truncate max-w-[100px]">{player.nickname}</span>
         <div className="bg-gray-800 text-white px-3 py-1 rounded font-bold text-sm">
           {gameState === 'RESULT' ? 'Result' : 'Game'}
         </div>
-        <span className="font-bold text-gray-700">{Math.round(player.score)}</span>
+        <div className="flex items-center gap-4">
+          <div className="flex flex-col items-end">
+            <span className="font-bold text-gray-700 leading-none">
+              {Math.round(gameState === 'QUESTION' ? scoreAtStartOfQuestion : player.score)}
+            </span>
+            <span className="text-[10px] font-black text-kahoot-green uppercase">
+              {(player as any).correctCount || 0} Correct
+            </span>
+          </div>
+          <button onClick={leaveGame} className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded font-bold hover:bg-red-200">
+            Exit
+          </button>
+        </div>
       </div>
 
       <main className="flex-1 flex flex-col items-center justify-center p-1 md:p-4 overflow-hidden w-full">
@@ -300,9 +400,16 @@ export default function PlayerView() {
               className="w-full h-full flex flex-col px-1"
             >
               {hasAnswered ? (
-                <div className="flex flex-col items-center justify-center flex-1 gap-2">
-                  <div className="w-10 h-10 border-4 border-kahoot-purple border-t-transparent rounded-full animate-spin" />
-                  <p className="text-lg font-bold text-kahoot-purple text-center">Submitted!</p>
+                <div className="flex flex-col items-center justify-center flex-1 gap-4">
+                  <div className="w-16 h-16 border-8 border-kahoot-purple border-t-transparent rounded-full animate-spin" />
+                  <div className="text-center">
+                    <p className="text-4xl font-black text-kahoot-purple mb-2">SUBMITTED!</p>
+                    <p className="text-gray-500 font-bold uppercase tracking-widest">Waiting for others...</p>
+                  </div>
+                  <div className="mt-8 bg-gray-100 px-8 py-4 rounded-2xl shadow-inner text-center">
+                    <p className="text-xs font-black text-gray-400 uppercase mb-1">Total Score</p>
+                    <p className="text-3xl font-black text-gray-800">{Math.round(scoreAtStartOfQuestion)}</p>
+                  </div>
                 </div>
               ) : (
                 <div className="flex-1 flex flex-col overflow-hidden w-full max-w-4xl mx-auto">

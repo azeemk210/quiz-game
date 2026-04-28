@@ -70,6 +70,11 @@ export default function Podium({ players, showHomeButton = true }: PodiumProps) 
               <div className="mb-2 md:mb-4 text-center">
                 <div className="text-sm md:text-3xl font-black truncate max-w-[80px] md:max-w-none">{player.nickname}</div>
                 <div className="text-xs md:text-xl font-bold opacity-80">{Math.round(player.score)}</div>
+                {typeof (player as any).correctCount === 'number' && (
+                  <div className="text-[10px] md:text-sm font-black text-kahoot-yellow uppercase">
+                    {(player as any).correctCount} Correct
+                  </div>
+                )}
               </div>
               
               <div className={`${heights[idx]} ${posIndex === 0 ? 'bg-kahoot-yellow' : posIndex === 1 ? 'bg-gray-400' : 'bg-orange-600'} w-full rounded-t-2xl shadow-2xl flex flex-col items-center pt-4 md:pt-8 border-x-2 md:border-x-4 border-t-2 md:border-t-4 border-white/20`}>

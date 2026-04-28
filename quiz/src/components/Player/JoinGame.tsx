@@ -42,7 +42,7 @@ export default function JoinGame({ onJoin }: JoinGameProps) {
 
       if (existingPlayer) {
         // Check if this is the same player re-joining
-        const savedSession = localStorage.getItem('quiz_session');
+        const savedSession = sessionStorage.getItem('quiz_session');
         let canRejoin = false;
         if (savedSession) {
           const { player: sPlayer } = JSON.parse(savedSession);
@@ -52,7 +52,15 @@ export default function JoinGame({ onJoin }: JoinGameProps) {
         }
 
         if (canRejoin) {
-          onJoin(session.id, existingPlayer);
+          // Fetch correct answers count for re-joining player
+          const { count } = await supabase
+            .from('answers')
+            .select('*', { count: 'exact', head: true })
+            .eq('player_id', existingPlayer.id)
+            .eq('game_id', session.id)
+            .eq('is_correct', true);
+
+          onJoin(session.id, { ...existingPlayer, correctCount: count || 0 });
           return;
         } else {
           throw new Error('Nickname already taken by another player.');
@@ -74,7 +82,7 @@ export default function JoinGame({ onJoin }: JoinGameProps) {
         throw new Error('Failed to join game.');
       }
 
-      onJoin(session.id, player);
+      onJoin(session.id, { ...player, correctCount: 0 });
     } catch (err: any) {
       setError(err.message);
     } finally {
