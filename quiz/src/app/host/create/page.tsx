@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
+import { q } from 'framer-motion/client';
 
 export default function CreateHost() {
   const router = useRouter();
@@ -11,154 +12,154 @@ export default function CreateHost() {
   const createGame = async () => {
     setLoading(true);
     try {
-      // 1. Create a dummy quiz
+      // 1. Create a quiz entry
       const { data: quiz, error: quizError } = await supabase
         .from('quizzes')
-        .insert({ title: 'Islamic History 101' })
+        .insert({ title: 'Islamic History' })
         .select()
         .single();
 
       if (quizError) throw quizError;
 
-      // 2. Create all 20 questions
+      // 2. Create all 20 questions with Hindi -> Urdu -> English order
       const questions = [
         {
           quiz_id: quiz.id,
-          question_text: "Q.1 Who sent Hazrat Khalid bin Waleed against the Syrians?\nشامیوں کے خلاف حضرت خالد بن ولید کو کس نے بھیجا؟\nशामियों के खिलाफ हज़रत खालिद को किसने भेजा?",
-          options: ["Hazrat Usman RZ", "Hazrat Abu Bakr RZ", "Hazrat Umar RZ", "Nabi ﷺ"],
+          question_text: "Q.1 वादी-ए-बतहा किस जगह का नाम था?\nوادیِ بطحاء کس جگہ کا نام تھا؟\nWhat place was Wadi-e-Batha the name of?",
+          options: ["Yasrab", "Madeena", "Makka", "Taif"],
+          correct_answer_index: 2,
+          time_limit: 15
+        },
+        {
+          quiz_id: quiz.id,
+          question_text: "Q.2 हज़रत इब्राहिम (अ.स.) की दूसरी बीवी कौन थीं?\nحضرت ابراہیم علیہ السلام کی دوسری بیوی کون تھیں؟\nWho was the second wife of Hazrat Ibrahim (A.S.)?",
+          options: ["Sara", "Hajra", "Samra", "Tuba"],
           correct_answer_index: 1,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.2 What was the reason for the death of Hazrat Musna bin Harisa?\nحضرت مثنیٰ بن حارثہ کی وفات کی وجہ کیا تھی؟\nहज़रत मुसन्ना बिन हारिसा की वफ़ात की वजह क्या थी?",
-          options: ["Jung me shaheed hone se", "Jung me zakhmi hone se", "Qudrati maut", "Kisi bimari ki wajah se"],
-          correct_answer_index: 1,
+          question_text: "Q.3 हज़रत इब्राहिम (अ.स.) के दूसरे बेटे कौन थे?\nحضرت ابراہیم علیہ السلام کے دوسرے بیٹے کون تھے؟\nWho was the second son of Hazrat Ibrahim (A.S.)?",
+          options: ["Ismail (AS)", "Ishaq (AS)", "Yusuf (AS)", "None of these"],
+          correct_answer_index: 1, // Ishaq (AS) is the second son
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.3 To which tribe did Hazrat Abu Bakr RZ belong?\nحضرت ابو بکر رضی اللہ عنہ کس قبیلے سے تعلق رکھتے تھے؟\nहज़रत अबू बकर रज़ि. किस क़बीले से ताल्लुक रखते थे?",
-          options: ["Banu Taim", "Banu Adi", "Banu Najjar", "Banu Asad"],
+          question_text: "Q.4 हज़रत इस्माइल (अ.स.) की शादी किस कबीले में हुई?\nحضرت اسماعیل کی شادی کس قبیلے میں ہوئی؟\nIn which tribe did Hazrat Ismail (AS) get married?",
+          options: ["Banu Jurhum", "Banu Asad", "Banu Taim", "Banu Adi"],
           correct_answer_index: 0,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.4 What advice of Hazrat Umar RZ did Hazrat Abu Ubaid forget and suffer loss?\nحضرت ابو عبیدہ رضی اللہ عنہ نے حضرت عمر رضی اللہ عنہ کی کون سی نصیحت بھول کر نقصان اٹھایا؟\nहज़रत उमर रज़ियल्लाहु अन्हु की कौन सी हिदायत भूल कर नुकसान उठाया?",
-          options: ["Nahar e Furaat ka paar karna", "Salaaro se mashvara karna", "Both A and B", "None of these"],
-          correct_answer_index: 2,
-          time_limit: 15
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.5 Who used to bring news to the Prophet ﷺ in the Cave of Thawr?\nغارِ ثور میں نبی ﷺ کو خبریں کون پہنچاتا تھا؟\nग़ार-ए-सौर में नबी ﷺ को खबरें कौन पहुँचाता था?",
-          options: ["Abdullah bin Umar", "Abdullah bin Zubair", "Abdullah bin Abu Bakr", "Abdullah bin Abdul Rahman"],
-          correct_answer_index: 2,
-          time_limit: 15
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.6 How many Hadith are narrated by Hazrat Umar RZ?\nحضرت عمر رضی اللہ عنہ سے کتنی احادیث مروی ہیں؟\nहज़रत उमर रज़ियल्लाहु अन्हु से कितनी हदीस मरवी हैं?",
-          options: ["100", "365", "539", "421"],
-          correct_answer_index: 2,
-          time_limit: 15
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.7 Who sent the army towards Syria after the Prophet ﷺ?\nنبی ﷺ کی وفات کے بعد شام کی طرف لشکر کس نے بھیجا؟\nनबी ﷺ की वफ़ात के बाद शाम की तरफ लश्कर किसने भेजा?",
-          options: ["Hazrat Umar RZ", "Hazrat Abu Bakr RZ", "Hazrat Usman RZ", "Hazrat Ali RZ"],
+          question_text: "Q.5 मक्के में सबसे पहला बुत कौन लाया?\nمکہ میں سب سے پہلا بت کون لایا؟\nWho brought the first idol to Mecca?",
+          options: ["Amr bin Madi", "Amr bin Luayy", "Abu Jahal", "Abu Lahab"],
           correct_answer_index: 1,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.8 After Hazrat Umar RZ became the caliph, who came to him for help?\nحضرت عمر رضی اللہ عنہ کے خلیفہ بننے کے بعد ان کے پاس کون مدد کے لیے آیا؟\nहज़रत उमर रज़ियल्लाहु अनहु के खलीफ़ा बनने के बाद, कौन उनसे मदद मांगने आया?",
-          options: ["Hazrat Ali RZ", "Hazrat Musna bin Harisa", "Hazrat Usman RZ", "None of these"],
-          correct_answer_index: 1,
-          time_limit: 15
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.9 At what age did Hazrat Abu Bakr RZ pass away?\nحضرت ابو بکر رضی اللہ عنہ کی وفات کس عمر میں ہوئی؟\nहज़रत अबू बकर रज़ि. की वफ़ात किस उम्र में हुई?",
-          options: ["62 years", "65 years", "63 years", "64 years"],
-          correct_answer_index: 2,
-          time_limit: 15
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.10 Which Caliph terminated Hazrat Khalid bin Waleed from the post of Commander in chief and appoint Hazrat Abu Ubaid as new Commander in chief?\nکس خلیفہ نے حضرت خالد بن ولید کو کمانڈر انچیف کے عہدے سے ہٹا کر حضرت ابو عبید کو نیا کمانڈر ان چیف مقرر کیا؟\nकिस खलीफा ने हज़रत खालिद बिन वलीद को सिपाह सालार के पद से हटाकर हज़रत अबू उबैद को नया सिपाह सालार मुकर्रर किया?",
-          options: ["Hazrat Ali RZ ne", "Hazrat Abu Bakr RZ ne", "Hazrat Umar RZ ne", "Hazrat Muawiya RZ ne"],
-          correct_answer_index: 2,
-          time_limit: 15
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.11 Among these, who was named Abdul Kaaba?\nان میں سے کس کا نام عبد الکعبہ تھا؟\nइनमें से किसका नाम अब्दुल काबा था?",
-          options: ["Hazrat Umar", "Hazrat Abu Bakr", "Hazrat Ali", "Hazrat Umar"],
-          correct_answer_index: 1,
-          time_limit: 15
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.12 In which battle did Hazrat Umar RZ and Hazrat Musna avenge the battle of Jisar?\nحضرت عمر رضی اللہ عنہ اور حضرت مثنیٰ نے کس جنگ میں جسر کا بدلہ لیا؟\nहज़रत उमर रज़ियल्लाहु अन्हु और हज़रत मुसन्ना ने जंग-ए-जिसर का बदला किस जंग में लिया?",
-          options: ["Jung e Boyeb", "Jung e Qadisiya", "Jung e Naharwan", "None of these"],
+          question_text: "Q.6 मक्के में सबसे पहली इमारत किसने बनवाई?\nمکہ میں سب سے پہلی عمارت کس نے بنوائی؟\nWho built the first building in Mecca?",
+          options: ["Qusai", "Kab", "Hashim", "Abdul Muttalib"],
           correct_answer_index: 0,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.13 By whose order was the chritians of najran exiled?\nنجران کے عیسائیوں کو کس کے حکم سے جلاوطن کیا گیا؟\nनजरान के ईसाइयों को किसके हुक्म से निकाला गया?",
-          options: ["Hazrat Umar RZ ke", "Hazrat Abu Bakr RZ ke", "Hazrat Hassan RZ ke", "None of these"],
+          question_text: "Q.7 ज़मज़म के कुएँ को किसने खोदा था?\nزمزم کے کنویں کو کس نے کھودا تھا？\nWho dug the well of Zamzam?",
+          options: ["Banu Jarham", "Abraha", "Hassan", "Rakhoon"],
           correct_answer_index: 0,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.14 Who purchased the land for the mosque in Quba?\nقبا میں مسجد کی زمین کس نے خریدی تھی؟\nक़ुबा में मस्जिद की ज़मीन किसने खरीदी थी?",
-          options: ["Hazrat Usman RZ", "Hazrat Abdul Rahman RZ", "Hazrat Abbas RZ", "Hazrat Abu Bakr RZ"],
+          question_text: "Q.8 खाना-ए-काबा पर पहला हमला किसने किया?\nخانۂ کعبہ پر پہلا حملہ کس نے کیا؟\nWho made the first attack on the Kaaba?",
+          options: ["Abraha", "Abu Tahir Qarmati", "Namrood", "Hassan"],
+          correct_answer_index: 0,
+          time_limit: 15
+        },
+        {
+          quiz_id: quiz.id,
+          question_text: "Q.9 हज़रत इस्माइल (अ.स.) के कितने बेटे थे?\nحضرت اسماعیلؑ کے کتنے بیٹے تھے؟\nHow many sons did Hazrat Ismail (AS) have?",
+          options: ["12", "2", "1", "7"],
+          correct_answer_index: 0,
+          time_limit: 15
+        },
+        {quiz_id: quiz.id,
+          question_text: "Q.10 ज़बी-उल्लाह कौन से नबी हैं?\nزبیحُ اللہ کون سے نبی کو کہا جاتا ہے؟\nWhich Prophet is known as “Zabiullah”?",
+          options: ["Hazrat Ishaq As", "Hazrat Musa As", "Hazrat Ibrahim As", "Hazrat Ismail As"],
           correct_answer_index: 3,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.15 What order did Hazrat Umar RZ issue after the battle of Yarmouk?\nجنگ یرموک کے بعد حضرت عمر رضی اللہ عنہ نے کیا حکم جاری کیا؟\nजंग-ए-यरमूक के बाद हज़रत उमर रज़ि. ने क्या हुक्म जारी किया?",
-          options: ["Muslimano ko aaram karne ke liye", "Muslims ki Madina wapasi", "Romans se sulah ka hukum", "5000 sipahi lashkar bhejne ka hukum"],
-          correct_answer_index: 3,
-          time_limit: 15
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.16 When was the Bai'at taken to make Hazrat Umar RZ the caliph?\nحضرت عمر رضی اللہ عنہ کو خلیفہ بنانے کے لیے بیعت کب لی گئی؟\nहज़रत उमर रज़ियल्लाहु अनहु को खलीफ़ा बनाने के लिए बैअत कब ली गई थी?",
-          options: ["23 jamadi us sani (13h)", "12 rabiul awwal (14h)", "24 ramzan (13h)", "11 safar (14h)"],
+          question_text: "Q.11 शीबा असल नाम किनका था?\nشیبہ اصل نام کس کا تھا؟\nWhose real name was Shaiba?",
+          options: ["Abdul Muttalib", "Abu Talib", "Hashim", "Abd Manaf"],
           correct_answer_index: 0,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.17 Who sent Hazrat Khalid bin Waleed against the Iranians?\nایرانیوں کے خلاف حضرت خالد بن ولید کو کس نے بھیجا؟\nईरानियों के खिलाफ हज़रत खालिद को किसने भेजा?",
-          options: ["Hazrat Usman RZ", "Hazrat Abu Bakr RZ", "Hazrat Umar RZ", "Nabi ﷺ"],
-          correct_answer_index: 1,
+          question_text: "Q.12 ज़मज़म की खुदाई अब्दुल मुत्तलिब ने की।\nعبدالمطلب نے زمزم کے کنویں کی کھدائی کی۔\nAbdul Muttalib dug (re-discovered) the well of Zamzam.",
+          options: ["True", "False"],
+          correct_answer_index: 0,
+          time_limit: 15
+        },
+        
+        {
+          quiz_id: quiz.id,
+          question_text: "Q.13 पहला हज हज़रत इब्राहिम और हज़रत इस्माइल ने किया।\nپہلا حج حضرت ابراہیمؑ اور حضرت اسماعیلؑ نے ادا کیا۔\nThe first Hajj was performed by Hazrat Ibrahim (AS) and Hazrat Ismail (AS).",
+          options: ["True", "False"],
+          correct_answer_index: 0,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.18 Who was the first Caliph to be called Ameerul Mumineen?\nامیر المومنین کہلانے والا پہلا خلیفہ کون تھا؟\nपहले खलीफा कौन थे जिन्हें अमीरुल मोमिनीन कहा गया?",
-          options: ["Hazrat Abu Bakr RZ", "Hazrat Umar RZ", "Hazrat Usman RZ", "Hazrat Hassan RZ"],
-          correct_answer_index: 1,
+          question_text: "Q.14 क्या हज़रत अब्दुल्ला भी ज़बीह कहलाते हैं?\nکیا حضرت عبداللہ کو بھی ذبیح کہا جاتا ہے؟\nIs Hazrat Abdullah also called \"Zabih\"?",
+          options: ["True", "False"],
+          correct_answer_index: 0,
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.19 At what age did Hazrat Abu Bakr RZ start traveling abroad?\nحضرت ابو بکر رضی اللہ عنہ نے کس عمر میں بیرون ملک کا سفر شروع کیا؟\nहज़रत अबू बकर रज़ि. ने किस उम्र में बाहर का सफर शुरू किया?",
-          options: ["16", "19", "14", "18"],
-          correct_answer_index: 3,
+          question_text: "Q.15 क्या हज़रत अब्दुल्ला के बदले 10 ऊंटों की कुर्बानी दी गई?\nکیا حضرت عبداللہ کے بدلے 10 اونٹوں کی قربانی دی گئی؟\nWere 10 camels sacrificed in place of Hazrat Abdullah?",
+          options: ["True", "False"],
+          correct_answer_index: 1, // Final number was 100 camels
           time_limit: 15
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.20 For whose mother did the Prophet ﷺ make dua?\nنبی ﷺ نے کس کی والدہ کے حق میں دعا کی؟\nनबी ﷺ ने किसकी वालिदा के लिए दुआ की?",
-          options: ["Hazrat Abu Bakr RZ", "Hazrat Usman RZ", "Hazrat Ali RZ", "Hazrat Umar RZ"],
+          question_text: "Q.16 क्या ज़मज़म की खुदाई में लोहे के हिरन निकले?\nکیا زمزم کی کھدائی کے دوران لوہے کے ہرن نکلے تھے؟\nDid iron deer come out during the excavation of Zamzam?",
+          options: ["True", "False"],
+          correct_answer_index: 1, // They were golden deer
+          time_limit: 15
+        },
+        {
+          quiz_id: quiz.id,
+          question_text: "Q.17 दारुन्नदवा की तामीर हज़रत हाशिम ने नहीं कराई।\nحضرت ہاشمؒ نے دارالندوہ کی تعمیر نہیں کروائی۔\nHazrat Hashim did not construct Dar al-Nadwa.",
+          options: ["True", "False"],
+          correct_answer_index: 0,
+          time_limit: 15
+        },
+        {
+          quiz_id: quiz.id,
+          question_text: "Q.18 मक्का वालों को पक्की इमारतें बनाने का हुक्म कुसाई ने दिया?\nقصی نے مکہ والوں کو پکی عمارتیں بنانے کا حکم دیا۔\nQusai instructed the people of Mecca to build permanent (solid) houses.",
+          options: ["True", "False"],
+          correct_answer_index: 0,
+          time_limit: 15
+        },
+        {
+          quiz_id: quiz.id,
+          question_text: "Q.19 जब हज़रत अब्दुल मुत्तलिब ने खुदाई शुरू की तब उनके 10 बेटे थे?\nجب حضرت عبدالمطلب نے کھدائی شروع کی تو اُن کے 10 بیٹے تھے۔\nWhen Hazrat Abdul Muttalib began the excavation, he had 10 sons.",
+          options: ["True", "False"],
+          correct_answer_index: 1, // He had only 1 son at the time
+          time_limit: 15
+        },
+        {
+          quiz_id: quiz.id,
+          question_text: "Q.20 हज़रत इस्माइल (अ.स.) रसूल थे?\nحضرت اسماعیلؑ رسول تھے۔\nHazrat Ismail (AS) was a Messenger (Rasool).",
+          options: ["True", "False"],
           correct_answer_index: 0,
           time_limit: 15
         }
