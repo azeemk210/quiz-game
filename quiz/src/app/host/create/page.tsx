@@ -67,7 +67,7 @@ export default function CreateHost() {
         },
         {
           quiz_id: quiz.id,
-          question_text: "Q.7 ज़मज़म के कुएँ को किसने खोदा था?\nزمزم کے کنویں کو کس نے پاٹا تھا\nWho dug the well of Zamzam?",
+          question_text: "Q.7 ज़मज़म के कुए को किसने पाटा  था?\nزمزم کے کنویں کو کس نے پاٹا تھا\nWho had filled (or covered) the well of Zamzam?”",
           options: ["Banu Jarham", "Abraha", "Hassan", "Rakhoon"],
           correct_answer_index: 0,
           time_limit: 20
