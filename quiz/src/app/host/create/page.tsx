@@ -23,148 +23,147 @@ export default function CreateHost() {
 
       // 2. Create all 20 questions with Hindi -> Urdu -> English order
       const questions = [
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.1 वादी-ए-बतहा किस जगह का नाम था?\nوادیِ بطحاء کس جگہ کا نام تھا؟\nWhat place was Wadi-e-Batha the name of?",
-          options: ["Yasrab", "Madeena", "Makka", "Taif"],
-          correct_answer_index: 2,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.2 हज़रत इब्राहिम (अ.स.) की दूसरी बीवी कौन थीं?\nحضرت ابراہیم علیہ السلام کی دوسری بیوی کون تھیں؟\nWho was the second wife of Hazrat Ibrahim (A.S.)?",
-          options: ["Sara", "Hajra", "Samra", "Tuba"],
-          correct_answer_index: 1,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.3 हज़रत इब्राहिम (अ.स.) के दूसरे बेटे कौन थे?\nحضرت ابراہیم علیہ السلام کے دوسرے بیٹے کون تھے؟\nWho was the second son of Hazrat Ibrahim (A.S.)?",
-          options: ["Ismail (AS)", "Ishaq (AS)", "Yusuf (AS)", "None of these"],
-          correct_answer_index: 1, // Ishaq (AS) is the second son
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.4 हज़रत इस्माइल (अ.स.) की शादी किस कबीले में हुई?\nحضرت اسماعیل کی شادی کس قبیلے میں ہوئی؟\nIn which tribe did Hazrat Ismail (AS) get married?",
-          options: ["Banu Jurhum", "Banu Asad", "Banu Taim", "Banu Adi"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.5 मक्के में सबसे पहला बुत कौन लाया?\nمکہ میں سب سے پہلا بت کون لایا؟\nWho brought the first idol to Mecca?",
-          options: ["Amr bin Madi", "Amr bin Luayy", "Abu Jahal", "Abu Lahab"],
-          correct_answer_index: 1,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.6 मक्के में सबसे पहली इमारत किसने बनवाई?\nمکہ میں سب سے پہلی عمارت کس نے بنوائی؟\nWho built the first building in Mecca?",
-          options: ["Qusai", "Kab", "Hashim", "Abdul Muttalib"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.7 ज़मज़म के कुए को किसने पाटा  था?\nزمزم کے کنویں کو کس نے پاٹا تھا\nWho had filled (or covered) the well of Zamzam?”",
-          options: ["Banu Jarham", "Abraha", "Hassan", "Rakhoon"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.8 खाना-ए-काबा पर पहला हमला किसने किया?\nخانۂ کعبہ پر پہلا حملہ کس نے کیا؟\nWho made the first attack on the Kaaba?",
-          options: ["Abraha", "Abu Tahir Qarmati", "Namrood", "Hassan"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.9 हज़रत इस्माइल (अ.स.) के कितने बेटे थे?\nحضرت اسماعیلؑ کے کتنے بیٹے تھے؟\nHow many sons did Hazrat Ismail (AS) have?",
-          options: ["12", "2", "1", "7"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {quiz_id: quiz.id,
-          question_text: "Q.10 ज़बी-उल्लाह कौन से नबी हैं?\nزبیحُ اللہ کون سے نبی کو کہا جاتا ہے؟\nWhich Prophet is known as “Zabiullah”?",
-          options: ["Hazrat Ishaq As", "Hazrat Musa As", "Hazrat Ibrahim As", "Hazrat Ismail As"],
-          correct_answer_index: 3,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.11 शीबा असल नाम किनका था?\nشیبہ اصل نام کس کا تھا؟\nWhose real name was Shaiba?",
-          options: ["Abdul Muttalib", "Abu Talib", "Hashim", "Abd Manaf"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.12 ज़मज़म की खुदाई अब्दुल मुत्तलिब ने की।\nعبدالمطلب نے زمزم کے کنویں کی کھدائی کی۔\nAbdul Muttalib dug (re-discovered) the well of Zamzam.",
-          options: ["True", "False"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.13 पहला हज हज़रत इब्राहिम और हज़रत इस्माइल ने किया।\nپہلا حج حضرت ابراہیمؑ اور حضرت اسماعیلؑ نے ادا کیا۔\nThe first Hajj was performed by Hazrat Ibrahim (AS) and Hazrat Ismail (AS).",
-          options: ["True", "False"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.14 क्या हज़रत अब्दुल्ला भी ज़बीह कहलाते हैं?\nکیا حضرت عبداللہ کو بھی ذبیح کہا جاتا ہے؟\nIs Hazrat Abdullah also called \"Zabih\"?",
-          options: ["True", "False"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.15 क्या हज़रत अब्दुल्ला के बदले 10 ऊंटों की कुर्बानी दी गई?\nکیا حضرت عبداللہ کے بدلے 10 اونٹوں کی قربانی دی گئی؟\nWere 10 camels sacrificed in place of Hazrat Abdullah?",
-          options: ["True", "False"],
-          correct_answer_index: 1, // Final number was 100 camels
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.16 क्या ज़मज़म की खुदाई में लोहे के हिरन निकले?\nکیا زمزم کی کھدائی کے دوران لوہے کے ہرن نکلے تھے？\nDid iron deer come out during the excavation of Zamzam?",
-          options: ["True", "False"],
-          correct_answer_index: 1, // They were golden deer
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.17 दारुन्नदवा की तामीर हज़रत हाशिम ने नहीं कराई।\nحضرت ہاشمؒ نے دارالندوہ کی تعمیر نہیں کروائی۔\nHazrat Hashim did not construct Dar al-Nadwa.",
-          options: ["True", "False"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.18 मक्का वालों को पक्की इमारतें बनाने का हुक्म कुसाई ने दिया?\nقصی نے مکہ والوں کو پکی عمارتیں بنانے کا حکم دیا۔\nQusai instructed the people of Mecca to build permanent (solid) houses.",
-          options: ["True", "False"],
-          correct_answer_index: 0,
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.19 जब हज़रत अब्दुल मुत्तलिब ने खुदाई शुरू की तब उनके 10 बेटे थे?\nجب حضرت عبدالمطلب نے کھدائی شروع کی تو اُن کے 10 بیٹے تھے۔\nWhen Hazrat Abdul Muttalib began the excavation, he had 10 sons.",
-          options: ["True", "False"],
-          correct_answer_index: 1, // He had only 1 son at the time
-          time_limit: 20
-        },
-        {
-          quiz_id: quiz.id,
-          question_text: "Q.20 हज़रत इस्माइल (अ.स.) रसूल थे?\nحضرت اسماعیلؑ رسول تھے۔\nHazrat Ismail (AS) was a Messenger (Rasool).",
-          options: ["True", "False"],
-          correct_answer_index: 0,
-          time_limit: 20
-        }
-      ];
-
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 1. ज़माना-ए-जाहिलियत में एक सफ़ेद ऊंट की कीमत क्या थी?\nزمانہ جاہلیت میں ایک سفید اونٹ کی قیمت کیا تھی؟\nWhat was the price of a white camel during the Age of Ignorance (Jahiliyyah)?",
+    options: ["1 Bora Anaj / ایک بوری اناج", "1 Aurat / ایک عورت", "5 horses / پانچ گھوڑے", "2 Aurtein / دو عورتیں"],
+    correct_answer_index: 3,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 2. हमारे नबी ﷺ किस दिन पैदा हुए?\nہمارے نبی ﷺ کس دن پیدا ہوئے؟\nOn which day was our Prophet ﷺ born?",
+    options: ["Sunday / اتوار", "Friday / جمعہ", "Saturday / ہفتہ", "Monday / پیر"],
+    correct_answer_index: 3,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 3. दाई हलीमा किस क़बीले से ताल्लुक रखती थीं?\nدائی حلیمہ کس قبیلے سے تعلق رکھتی تھیں؟\nWhich tribe did Halima (the wet nurse) belong to?",
+    options: ["Banu Sa'd / بنو سعد", "Banu Jurhum / بنو جرہم", "Taghlib / تغلب", "Banu Najjar / بنو نجار"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 4. हज़रत हलीमा सादिया के वालिद का क्या नाम था?\nحضرت حلیمہ سعدیہ کے والد کا کیا نام تھا؟\nWhat was the name of Hazrat Halima Saadia's father?",
+    options: ["Abu Zaid", "Abu Zuhaib", "Abu Amir", "Abu Nashar"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 5. हमारे नबी ﷺ किस साल पैदा हुए?\nہمارے نبی ﷺ کس سال پیدا ہوئے؟\nIn which year was our Prophet ﷺ born?",
+    options: ["1 Amul Feel", "2 Amul Feel", "10 Amul Feel", "7 Amul Feel"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 6. हज़रत अब्दुल्लाह की जगह कितने ऊंटों की क़ुर्बानी दी गई?\nحضرت عبداللہ کی جگہ کتنے اونٹوں کی قربانی دی گئی؟\nHow many camels were sacrificed in place of Hazrat Abdullah?",
+    options: ["70", "10", "100", "7"],
+    correct_answer_index: 2,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 7. इनमें से कौन सा क़बीला हमारे नबी ﷺ की ननिहाल है?\nان میں سے کون سا قبیلہ ہمارے نبی ﷺ کا ننھیال ہے؟\nWhich of these tribes is the maternal family tribe of our Prophet ﷺ?",
+    options: ["Banu Zahra", "Banu Asad", "Banu Hashim", "Banu Adi"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 8. अब्राहा ने अल-क़ुलीस (गिरजाघर) कहाँ बनवाया था?\nابرہہ نے القلیس (کلیسہ) کہاں بنوایا تھا؟\nWhere did Abraha build the Al-Qullays (Church)?",
+    options: ["Aden", "Syria", "Yathrib", "Yemen"],
+    correct_answer_index: 3,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 9. हज़रत अब्दुल मुत्तलिब की कितनी बेटियाँ थीं?\nحضرت عبدالمطلب کی کتنی بیٹیاں تھیں؟\nHow many daughters did Hazrat Abdul Muttalib have?",
+    options: ["1", "4", "3", "6"],
+    correct_answer_index: 3,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 10: हज़रत अब्दुल्लाह की बांदी का नाम क्या था?\nحضرت عبداللہ کی باندی کا نام کیا تھا؟\nWhat was the name of Hazrat Abdullah’s maidservant?",
+    options: ["Umme Aiman", "Umme Salma", "Umme Kulsum", "Umme Hani"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 11. क्या अब्राहा ने काबे पर पहला हमला किया था?\nکیا ابرہہ نے کعبہ پر پہلا حملہ کیا تھا؟\nDid Abraha make the first attack on the Kaaba?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 12. हज़रत अब्दुल्लाह की वफ़ात 25 साल की उम्र में हुई थी?\nحضرت عبداللہ کی وفات 25 سال کی عمر میں ہوئی تھی؟\nDid Hazrat Abdullah pass away at the age of 25?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 13. हज़रत अब्दुल मुत्तलिब के 9 बेटे थे?\nحضرت عبدالمطلب کے 9 بیٹے تھے؟\nDid Hazrat Abdul Muttalib have 9 sons?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 14. हमारे नबी ﷺ को अबू लहब की बांदी ने दूध पिलाया था?\nہمارے نبی ﷺ کو ابو لہب کی باندی نے دودھ پلایا تھا؟\nWas our Prophet ﷺ breastfed by the slave woman of Abu Lahab?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 15. हज़रत अब्दुल्लाह का इंतक़ाल मदीने में नहीं हुआ था?\nحضرت عبداللہ کا انتقال مدینہ میں نہیں ہوا تھا؟\nDid Hazrat Abdullah NOT pass away in Madinah?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 16. हज़रत अली हमारे नबी ﷺ के रज़ाई (दूध शरीक) भाई थे?\nحضرت علی ہمارے نبی ﷺ کے رضاعی بھائی تھے؟\nWas Hazrat Ali the milk-brother of our Prophet ﷺ?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 17. हज़रत हमज़ा हमारे नबी ﷺ के रज़ाई भाई नहीं थे?\nحضرت حمزہ ہمارے نبی ﷺ کے رضاعی بھائی نہیں تھے؟\nWas Hazrat Hamza NOT the milk-brother of our Prophet ﷺ?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 18. हमारे नबी ﷺ की दादी का नाम फातिमा था?\nہمارے نبی ﷺ کی دادی کا نام فاطمہ تھا؟\nWas the name of our Prophet’s ﷺ grandmother Fatimah?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 19. दाई हलीमा पहले ही दिन हमारे नबी ﷺ को लेने आ गई थीं?\nدائی حلیمہ پہلے ہی دن ہمارے نبی ﷺ کو لینے آ گئی تھیں؟\nDid Halima come on the very first day to take our Prophet ﷺ?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 20. हमारे नबी ﷺ का नाम उनके दादा ने रखा था?\nہمارے نبی ﷺ کا نام ان کے دادا نے رکھا تھا؟\nWas our Prophet ﷺ named by his grandfather?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 20
+  }
+];
       await supabase.from('questions').insert(questions);
 
       // 3. Create game session
