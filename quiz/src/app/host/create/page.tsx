@@ -137,7 +137,7 @@ export default function CreateHost() {
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 17. हज़रत हमज़ा हमारे नबी ﷺ के रज़ाई भाई नहीं थे?\nحضرت حمزہ ہمارے نبی ﷺ کے رضاعی بھائی نہیں تھے؟\nWas Hazrat Hamza NOT the milk-brother of our Prophet ﷺ?",
+    question_text: "Question 17. हज़रत हमज़ा हमारे नबी ﷺ के दूध भाई नहीं थे?\nحضرت حمزہ ہمارے نبی ﷺ کے رضاعی بھائی نہیں تھے؟\nWas Hazrat Hamza NOT the milk-brother of our Prophet ﷺ?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 20

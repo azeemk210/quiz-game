@@ -11,7 +11,16 @@ interface LeaderboardProps {
 }
 
 export default function Leaderboard({ players, onNext, isLastQuestion }: LeaderboardProps) {
-  const sortedPlayers = [...players].sort((a, b) => b.score - a.score).slice(0, 5);
+  const sortedPlayers = [...players]
+    .sort((a, b) => {
+      const aCorrect = a.correctCount || 0;
+      const bCorrect = b.correctCount || 0;
+      if (bCorrect !== aCorrect) {
+        return bCorrect - aCorrect;
+      }
+      return b.score - a.score;
+    })
+    .slice(0, 5);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-kahoot-blue p-8 text-white">

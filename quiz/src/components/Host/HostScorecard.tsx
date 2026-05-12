@@ -31,8 +31,13 @@ export default function HostScorecard({ gameId, players }: { gameId: string; pla
           };
         });
         
-        // Sort by score
-        setDetailedData(stats.sort((a, b) => b.score - a.score));
+        // Sort by correct count first, then score
+        setDetailedData(stats.sort((a, b) => {
+          if (b.correct_count !== a.correct_count) {
+            return b.correct_count - a.correct_count;
+          }
+          return b.score - a.score;
+        }));
       }
       setLoading(false);
     };

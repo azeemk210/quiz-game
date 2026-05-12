@@ -36,8 +36,17 @@ export default function PlayerView() {
     if (!gameId || !player || gameState !== 'FINISHED') return;
     
     const fetchAll = async () => {
-      const { data } = await supabase.from('players').select('*').eq('game_id', gameId);
-      if (data) setAllPlayers(data);
+      const { data: pData } = await supabase.from('players').select('*').eq('game_id', gameId);
+      const { data: aData } = await supabase.from('answers').select('player_id, is_correct').eq('game_id', gameId);
+      
+      if (pData) {
+        const answers = aData || [];
+        const playersWithStats = pData.map(p => ({
+          ...p,
+          correctCount: answers.filter(a => a.player_id === p.id && a.is_correct).length
+        }));
+        setAllPlayers(playersWithStats);
+      }
     };
     fetchAll();
   }, [gameId, player, gameState]);

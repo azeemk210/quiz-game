@@ -12,7 +12,16 @@ interface PodiumProps {
 }
 
 export default function Podium({ players, showHomeButton = true }: PodiumProps) {
-  const sorted = [...players].sort((a, b) => b.score - a.score).slice(0, 3);
+  const sorted = [...players]
+    .sort((a, b) => {
+      const aCorrect = a.correctCount || 0;
+      const bCorrect = b.correctCount || 0;
+      if (bCorrect !== aCorrect) {
+        return bCorrect - aCorrect;
+      }
+      return b.score - a.score;
+    })
+    .slice(0, 3);
   
   useEffect(() => {
     const duration = 5 * 1000;

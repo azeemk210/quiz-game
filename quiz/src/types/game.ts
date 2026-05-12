@@ -29,6 +29,7 @@ export interface Player {
   game_id: string;
   nickname: string;
   score: number;
+  correctCount?: number;
 }
 
 export interface AnswerSubmission {
