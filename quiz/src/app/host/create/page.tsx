@@ -25,140 +25,140 @@ export default function CreateHost() {
       const questions = [
   {
     quiz_id: quiz.id,
-    question_text: "Question 1. ज़माना-ए-जाहिलियत में एक सफ़ेद ऊंट की कीमत क्या थी?\nزمانہ جاہلیت میں ایک سفید اونٹ کی قیمت کیا تھی؟\nWhat was the price of a white camel during the Age of Ignorance (Jahiliyyah)?",
-    options: ["1 Bora Anaj / ایک بوری اناج", "1 Aurat / ایک عورت", "5 horses / پانچ گھوڑے", "2 Aurtein / دو عورتیں"],
-    correct_answer_index: 3,
-    time_limit: 20
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 2. हमारे नबी ﷺ किस दिन पैदा हुए?\nہمارے نبی ﷺ کس دن پیدا ہوئے؟\nOn which day was our Prophet ﷺ born?",
-    options: ["Sunday / اتوار", "Friday / جمعہ", "Saturday / ہفتہ", "Monday / پیر"],
-    correct_answer_index: 3,
-    time_limit: 20
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 3. दाई हलीमा किस क़बीले से ताल्लुक रखती थीं?\nدائی حلیمہ کس قبیلے سے تعلق رکھتی تھیں؟\nWhich tribe did Halima (the wet nurse) belong to?",
-    options: ["Banu Sa'd / بنو سعد", "Banu Jurhum / بنو جرہم", "Taghlib / تغلب", "Banu Najjar / بنو نجار"],
-    correct_answer_index: 0,
-    time_limit: 20
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 4. हज़रत हलीमा सादिया के वालिद का क्या नाम था?\nحضرت حلیمہ سعدیہ کے والد کا کیا نام تھا؟\nWhat was the name of Hazrat Halima Saadia's father?",
-    options: ["Abu Zaid", "Abu Zuhaib", "Abu Amir", "Abu Nashar"],
+    question_text: "Question 1. हज़रत अबू ज़ुऐब की बेटी कौन थीं?\nحضرت ابو زُوَیب کی بیٹی کون تھیں؟\nWho was the daughter of Abu Zu'aib?",
+    options: ["Shaima / شیماء", "Halima / حلیمہ", "Hinda / ہندہ", "Sara / سارہ"],
     correct_answer_index: 1,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 5. हमारे नबी ﷺ किस साल पैदा हुए?\nہمارے نبی ﷺ کس سال پیدا ہوئے؟\nIn which year was our Prophet ﷺ born?",
-    options: ["1 Amul Feel", "2 Amul Feel", "10 Amul Feel", "7 Amul Feel"],
+    question_text: "Question 2. हमारे नबी ﷺ दाई हलीमा के पास कितने साल रहे?\nہمارے نبی ﷺ دائی حلیمہ کے پاس کتنے سال رہے؟\nHow many years did our Prophet ﷺ stay with Halima Saadia?",
+    options: ["5 years / 5 سال", "2 years / 2 سال", "3 years / 3 سال", "2.5 years / 2.5 سال"],
     correct_answer_index: 0,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 6. हज़रत अब्दुल्लाह की जगह कितने ऊंटों की क़ुर्बानी दी गई?\nحضرت عبداللہ کی جگہ کتنے اونٹوں کی قربانی دی گئی؟\nHow many camels were sacrificed in place of Hazrat Abdullah?",
-    options: ["70", "10", "100", "7"],
+    question_text: "Question 3. हमारे नबी ﷺ पहली बार मदीना किस उम्र में गए?\nہمارے نبی ﷺ پہلی بار مدینہ کس عمر میں گئے؟\nAt what age did our Prophet ﷺ go to Madinah for the first time?",
+    options: ["6 years / 6 سال", "5 years / 5 سال", "8 years / 8 سال", "7 years / 7 سال"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 4. हमारे नबी ﷺ के दादा की ननिहाल किस ख़ानदान में थी?\nہمارے نبی ﷺ کے دادا کی ننھیال کس خاندان میں تھی؟\nWhich family did the maternal relatives of our Prophet ﷺ's grandfather belong to?",
+    options: ["Banu Adi / بنو عدی", "Banu Abde Shams / بنو عبد شمس", "Banu Abde Manaf / بنو عبد مناف", "Banu Najjar / بنو نجار"],
+    correct_answer_index: 3,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 5. हज़रत सुमैय्या रज़ि0 कहां की रहने वाली थीं?\nحضرت سمیہ رضی اللہ عنہا کہاں کی رہنے والی تھیں؟\nWhere was Hazrat Sumayyah (RA) from?",
+    options: ["Ethiopia / حبشہ", "Egypt / مصر", "Iraq / عراق", "Sham / شام"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 6. हज़रत आमना का इंतकाल कहां हुआ?\nحضرت آمنہ رضی اللہ عنہا کا انتقال کہاں ہوا؟\nWhere did Aminah bint Wahb pass away?",
+    options: ["Huzaifa / حذیفہ", "Saffa / صفا", "Abwa / ابواء", "Hudaibiya / حدیبیہ"],
     correct_answer_index: 2,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 7. इनमें से कौन सा क़बीला हमारे नबी ﷺ की ननिहाल है?\nان میں سے کون سا قبیلہ ہمارے نبی ﷺ کا ننھیال ہے؟\nWhich of these tribes is the maternal family tribe of our Prophet ﷺ?",
-    options: ["Banu Zahra", "Banu Asad", "Banu Hashim", "Banu Adi"],
-    correct_answer_index: 0,
-    time_limit: 20
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 8. अब्राहा ने अल-क़ुलीस (गिरजाघर) कहाँ बनवाया था?\nابرہہ نے القلیس (کلیسہ) کہاں بنوایا تھا؟\nWhere did Abraha build the Al-Qullays (Church)?",
-    options: ["Aden", "Syria", "Yathrib", "Yemen"],
+    question_text: "Question 7. हज़रत सुमैय्या किस उम्र में शहीद हुईं?\nحضرت سمیہ رضی اللہ عنہا کس عمر میں شہید ہوئیں؟\nAt what age was Hazrat Sumayyah (RA) martyred?",
+    options: ["70 years / 70 سال", "50 years / 50 سال", "63 years / 63 سال", "60 years / 60 سال"],
     correct_answer_index: 3,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 9. हज़रत अब्दुल मुत्तलिब की कितनी बेटियाँ थीं?\nحضرت عبدالمطلب کی کتنی بیٹیاں تھیں؟\nHow many daughters did Hazrat Abdul Muttalib have?",
-    options: ["1", "4", "3", "6"],
-    correct_answer_index: 3,
-    time_limit: 20
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 10: हज़रत अब्दुल्लाह की बांदी का नाम क्या था?\nحضرت عبداللہ کی باندی کا نام کیا تھا؟\nWhat was the name of Hazrat Abdullah’s maidservant?",
-    options: ["Umme Aiman", "Umme Salma", "Umme Kulsum", "Umme Hani"],
+    question_text: "Question 8. हज़रत अम्मार किस क़बीले के ग़ुलाम थे?\nحضرت عمار رضی اللہ عنہ کس قبیلے کے غلام تھے؟\nWhich tribe was Hazrat Ammar (RA) a slave of?",
+    options: ["Banu Makhzoom / بنو مخزوم", "Banu Adi / بنو عدی", "Banu Kinana / بنو کنانہ", "Banu Khazraj / بنو خزرج"],
     correct_answer_index: 0,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 11. क्या अब्राहा ने काबे पर पहला हमला किया था?\nکیا ابرہہ نے کعبہ پر پہلا حملہ کیا تھا؟\nDid Abraha make the first attack on the Kaaba?",
-    options: ["True / सही", "False / ग़लत"],
-    correct_answer_index: 1,
+    question_text: "Question 9. इस्लाम में सबसे पहले शहादत किसको मिली?\nاسلام میں سب سے پہلے شہادت کس کو ملی؟\nWho was the first martyr in Islam?",
+    options: ["एक लड़की / ایک لڑکی", "एक बच्ची / ایک بچی", "एक बुज़ुर्ग औरत / ایک بزرگ عورت", "एक जवान औरत / ایک جوان عورت"],
+    correct_answer_index: 2,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 12. हज़रत अब्दुल्लाह की वफ़ात 25 साल की उम्र में हुई थी?\nحضرت عبداللہ کی وفات 25 سال کی عمر میں ہوئی تھی؟\nDid Hazrat Abdullah pass away at the age of 25?",
-    options: ["True / सही", "False / ग़लत"],
+    question_text: "Question 10. अबू जहल के बुतों को कौन कोसती थीं?\nابو جہل کے بتوں کو کون برا بھلا کہتی تھیں؟\nWho used to condemn Abu Jahl's idols?",
+    options: ["Hazrat Sumayyah (RA) / حضرت سمیہؓ", "Hazrat Aisha (RA) / حضرت عائشہؓ", "Hazrat Safiyah (RA) / حضرت صفیہؓ", "Hazrat Shaima / حضرت شیماء"],
     correct_answer_index: 0,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 13. हज़रत अब्दुल मुत्तलिब के 9 बेटे थे?\nحضرت عبدالمطلب کے 9 بیٹے تھے؟\nDid Hazrat Abdul Muttalib have 9 sons?",
-    options: ["True / सही", "False / ग़लत"],
-    correct_answer_index: 1,
-    time_limit: 20
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 14. हमारे नबी ﷺ को अबू लहब की बांदी ने दूध पिलाया था?\nہمارے نبی ﷺ کو ابو لہب کی باندی نے دودھ پلایا تھا؟\nWas our Prophet ﷺ breastfed by the slave woman of Abu Lahab?",
+    question_text: "Question 11. हज़रत आमना के इंतकाल के बाद हमारे नबी ﷺ को मदीने से उम्मे ऐमन लेकर आईं।\nحضرت آمنہ کے انتقال کے بعد ہمارے نبی ﷺ کو مدینے سے اُمِّ ایمن لے کر آئیں۔\nAfter the demise of Aminah bint Wahb, our Prophet ﷺ was brought back from Madinah by Umm Ayman.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 15. हज़रत अब्दुल्लाह का इंतक़ाल मदीने में नहीं हुआ था?\nحضرت عبداللہ کا انتقال مدینہ میں نہیں ہوا تھا؟\nDid Hazrat Abdullah NOT pass away in Madinah?",
+    question_text: "Question 12. हज़रत सुमैय्या को अबू जहल ने तलवार से शहीद कर दिया था।\nحضرت سمیہ رضی اللہ عنہا کو ابو جہل نے تلوار سے شہید کر دیا تھا۔\nHazrat Sumayyah (RA) was martyred by Abu Jahl with a sword.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 16. हज़रत अली हमारे नबी ﷺ के रज़ाई (दूध शरीक) भाई थे?\nحضرت علی ہمارے نبی ﷺ کے رضاعی بھائی تھے؟\nWas Hazrat Ali the milk-brother of our Prophet ﷺ?",
+    question_text: "Question 13. दाई हलीमा की बेटी का नाम शैमा नहीं था।\nدائی حلیمہ کی بیٹی کا نام شیماء نہیں تھا۔\nThe name of Daai Halima's daughter was not Shaima.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 17. हज़रत हमज़ा हमारे नबी ﷺ के दूध भाई नहीं थे?\nحضرت حمزہ ہمارے نبی ﷺ کے رضاعی بھائی نہیں تھے؟\nWas Hazrat Hamza NOT the milk-brother of our Prophet ﷺ?",
-    options: ["True / सही", "False / ग़लत"],
-    correct_answer_index: 1,
-    time_limit: 20
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 18. हमारे नबी ﷺ की दादी का नाम फातिमा था?\nہمارے نبی ﷺ کی دادی کا نام فاطمہ تھا؟\nWas the name of our Prophet’s ﷺ grandmother Fatimah?",
+    question_text: "Question 14. हज़रत सुमैय्या हमारे नबी ﷺ की पैदाइश से 20 साल पहले पैदा हुई थीं।\nحضرت سمیہ رضی اللہ عنہا ہمارے نبی ﷺ کی پیدائش سے 20 سال پہلے پیدا ہوئی تھیں۔\nHazrat Sumayyah (RA) was born 20 years before the birth of our Prophet ﷺ.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 19. दाई हलीमा पहले ही दिन हमारे नबी ﷺ को लेने आ गई थीं?\nدائی حلیمہ پہلے ہی دن ہمارے نبی ﷺ کو لینے آ گئی تھیں؟\nDid Halima come on the very first day to take our Prophet ﷺ?",
+    question_text: "Question 15. हज़रत यासिर हज़रत सुमैय्या के शौहर नहीं हैं।\nحضرت یاسر، حضرت سمیہ رضی اللہ عنہا کے شوہر نہیں ہیں۔\nHazrat Yasir is not the husband of Hazrat Sumayyah (RA).",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 20
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 20. हमारे नबी ﷺ का नाम उनके दादा ने रखा था?\nہمارے نبی ﷺ کا نام ان کے دادا نے رکھا تھا؟\nWas our Prophet ﷺ named by his grandfather?",
+    question_text: "Question 16. जब हमारे नबी ﷺ के दादा का इंतकाल हुआ, तब आप ﷺ 8 साल के थे।\nجب ہمارے نبی ﷺ کے دادا کا انتقال ہوا، تب آپ ﷺ کی عمر 8 سال تھی۔\nWhen our Prophet ﷺ's grandfather passed away, he ﷺ was 8 years old.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 17. हज़रत यासिर यमन के रहने वाले थे।\nحضرت یاسر یمن کے رہنے والے تھے۔\nHazrat Yasir was from Yemen.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 18. हज़रत यासिर मक्का बिज़नेस के लिए आए थे।\nحضرت یاسر مکہ تجارت کے لیے آئے تھے۔\nHazrat Yasir came to Makkah for business.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 19. जब हमारे नबी ﷺ 9 साल के थे, तब उनके चाचा का इंतकाल हो गया।\nجب ہمارے نبی ﷺ 9 سال کے تھے، تب اُن کے چچا کا انتقال ہو گیا۔\nWhen our Prophet ﷺ was 9 years old, his uncle passed away.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 20
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 20. हज़रत सुमैय्या रज़ि0 के बेटे का नाम अम्मार था।\nحضرت سمیہ رضی اللہ عنہا کے بیٹے کا نام عمار تھا۔\nThe name of Hazrat Sumayyah (RA)'s son was Ammar.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 20
