@@ -42,8 +42,8 @@ export default function QuestionsPage() {
       if (qs) {
         // Sort by the Q.N number embedded in question_text (e.g. "Q.1 ...", "Q.12 ...")
         const sorted = [...qs].sort((a, b) => {
-          const numA = parseInt(a.question_text.match(/Q\.(\d+)/)?.[1] ?? '0', 10);
-          const numB = parseInt(b.question_text.match(/Q\.(\d+)/)?.[1] ?? '0', 10);
+          const numA = parseInt(a.question_text.match(/Question\s*\.?\s*(\d+)/i)?.[1] ?? '0', 10);
+          const numB = parseInt(b.question_text.match(/Question\s*\.?\s*(\d+)/i)?.[1] ?? '0', 10);
           return numA - numB;
         });
         setQuestions(sorted);
