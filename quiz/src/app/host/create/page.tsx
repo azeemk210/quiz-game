@@ -21,145 +21,180 @@ export default function CreateHost() {
 
       if (quizError) throw quizError;
 
-      // 2. Create all 20 questions with Hindi -> Urdu -> English order
+      // 2. Create quiz questions with Hindi -> Urdu -> English order
 const questions = [
   {
     quiz_id: quiz.id,
-    question_text: "Question 1. हमारे नबी ﷺ से पहले कितने लोगों ने तौहीद का पैगाम दिया?\nہمارے نبی ﷺ سے پہلے کتنے لوگوں نے توحید کا پیغام دیا؟\nBefore our Prophet ﷺ, how many people preached the message of Tawheed?",
-    options: ["6", "4", "2", "5"],
+    question_text: "Question 1. इनमें से किनका नाम अब्दुल काबा था?\nان میں سے کس کا نام عبدُ الکعبہ تھا؟\nAmong these, who was named Abdul Kaaba?",
+    options: ["Hazrat Umar (RA) / حضرت عمرؓ", "Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Ali (RA) / حضرت علیؓ", "Hazrat Umar (RA) / حضرت عمرؓ"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 2. बुहेरा ने अबू तालिब को किन लोगों से हमारे नबी ﷺ को बचाकर रखने की हिदायत की?\nبہیرہ نے ابو طالب کو کن لوگوں سے ہمارے نبی ﷺ کو بچا کر رکھنے کی ہدایت کی؟\nBuhayrah advised Abu Talib to protect our Prophet ﷺ from which people?",
-    options: ["Jews / یہودی", "Christians / عیسائی", "Quraysh / قریش", "Persians / فارسی"],
+    question_text: "Question 2. हज़रत अबू बकर (रज़ि॰) किस क़बीले से ताल्लुक रखते थे?\nحضرت ابو بکر رضی اللہ عنہ کس قبیلے سے تعلق رکھتے تھے؟\nTo which tribe did Hazrat Abu Bakr (RA) belong?",
+    options: ["Banu Taim / بنو تیم", "Banu Adi / بنو عدی", "Banu Najjar / بنو نجار", "Banu Asad / بنو اسد"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 3. हमारे नबी ﷺ ने तिजारत किनके साथ शुरू की?\nہمارے نبی ﷺ نے تجارت کن کے ساتھ شروع کی؟\nWith whom did our Prophet ﷺ start trade?",
-    options: ["Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Umar (RA) / حضرت عمرؓ", "Hazrat Ali (RA) / حضرت علیؓ", "Ammi Khadijah (RA) / امی خدیجہؓ"],
+    question_text: "Question 3. हज़रत अबू बकर (रज़ि॰) ने किस उम्र में बैरून-ए-मुल्क का सफ़र शुरू किया?\nحضرت ابو بکر رضی اللہ عنہ نے کس عمر میں بیرونِ ملک کا سفر شروع کیا؟\nAt what age did Hazrat Abu Bakr (RA) start traveling abroad?",
+    options: ["16", "19", "14", "18"],
     correct_answer_index: 3,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 4. दाई हलीमा से पहले हमारे नबी ﷺ को किसने दूध पिलाया?\nدائی حلیمہ سے پہلے ہمارے نبی ﷺ کو کس نے دودھ پلایا؟\nBefore Halima, who nursed our Prophet ﷺ?",
-    options: ["Rubaida / زیبہ", "Suvaiba / صہیب", "Zikra / ذکرا", "Marrah / مرراح"],
-    correct_answer_index: 1,
+    question_text: "Question 4. इनमें से किनकी वालिदा के हक़ में हमारे नबी ﷺ ने दुआ की?\nان میں سے کن کی والدہ کے حق میں ہمارے نبی ﷺ نے دعا کی؟\nAmong these, for whose mother did our Prophet ﷺ pray?",
+    options: ["Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Usman (RA) / حضرت عثمانؓ", "Hazrat Ali (RA) / حضرت علیؓ", "Hazrat Umar (RA) / حضرت عمرؓ"],
+    correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 5. सुमैय्या (रज़ि॰) किस क़बीले की क़ैद में थीं?\nسُمَیّہ رَضِیَ اللہُ عَنْہَا کس قبیلے کی قید میں تھیں؟\nSumayyah (RA) was in the captivity of which tribe?",
-    options: ["Bani Asad / بنی اسد", "Bani Jarham / بنی جرم", "Bani Makhzoom / بنی مخصوم", "Bani Asad / بنی اسد"],
+    question_text: "Question 5. ग़ार-ए-सूर में अल्लाह के नबी ﷺ को ख़बरें कौन पहुँचाता था?\nغارِ ثور میں اللہ کے نبی ﷺ کو خبریں کون پہنچاتا تھا؟\nWho used to bring news to the Prophet of Allah ﷺ in the Cave of Thawr?",
+    options: ["Abdullah bin Umar / عبداللہ بن عمر", "Abdullah bin Zubair / عبداللہ بن زبیر", "Abdullah bin Abu Bakr / عبداللہ بن ابوبکر", "Abdullah bin Abdul Rahman / عبداللہ بن عبدالرحمن"],
     correct_answer_index: 2,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 6. बहीरा कहाँ का रहने वाला था?\nبہیرہ کہاں کا رہنے والا تھا؟\nWhere was Bahera a resident of?",
-    options: ["Madinah / مدینہ", "Yemen / یمن", "Habsha / حبشہ", "Basra / بصرہ"],
+    question_text: "Question 6. क़ुबा में मस्जिद की ज़मीन किसने ख़रीदी थी?\nقُبا میں مسجد کی زمین کس نے خریدی تھی؟\nWho purchased the land for the mosque in Quba?",
+    options: ["Hazrat Usman Ghani (RA) / حضرت عثمان غنیؓ", "Hazrat Abdul Rahman (RA) / حضرت عبدالرحمنؓ", "Hazrat Abbas (RA) / حضرت عباسؓ", "Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ"],
     correct_answer_index: 3,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 7. हज़रत सफ़िया इनमें से किनकी बहन थीं?\nحضرت صفیہ ان میں سے کس کی بہن تھیں؟\nWhose sister was Hazrat Safiyyah among these?",
-    options: ["Abu Dujana al-Ansari (RA) / ابو دجانہ انصاریؓ", "Kaʿb bin Malik (RA) / کعب بن مالکؓ", "Abu Bakr (RA) / ابوبکرؓ", "Ameer Hamza (RA) / امیر حمزہؓ"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 8. इनमें से कौन से नबी हज़रत इस्माइल (अ॰) की औलाद हैं?\nان میں سے کون سے نبی حضرت اسماعیل علیہ السلام کی اولاد میں سے ہیں؟\nWhich of these prophets are descendants of Hazrat Ismail (AS)?",
-    options: ["Isa (AS) / عیسیٰ علیہ السلام", "Musa (AS) / موسیٰ علیہ السلام", "Yusuf (AS) / یوسف علیہ السلام", "Muhammad ﷺ / محمد ﷺ"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 9. कौन से नबी हज़रत इब्राहीम (अ॰) से मुशाबहत रखते हैं?\nکون سے نبی حضرت ابراہیمؑ سے مشابہت رکھتے ہیں؟\nWhich prophet resembles Hazrat Ibrahim (AS)?",
-    options: ["Adam (AS) / آدم علیہ السلام", "Lut (AS) / لوط علیہ السلام", "Yunus (AS) / یونس علیہ السلام", "Muhammad ﷺ / محمد ﷺ"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 10. इनमें से हमारे नबी ﷺ की रज़ाई बहन कौन हैं?\nان میں سے ہمارے نبی ﷺ کی رضاعی بہن کون ہیں؟\nAmong these, who is the foster sister of our Prophet ﷺ?",
-    options: ["Hinda (RA) / ہندہؓ", "Safiya (RA) / صفیہؓ", "Shaima (RA) / شیماءؓ", "Shaima (RA) / شیماءؓ"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 11. नफ़ीस किनकी सहेली थीं?\nنفیس کس کی سہیلی تھی؟\nNafees was a friend of whom?",
-    options: ["Bibi Fatima (RA) / بی بی فاطمہؓ", "Bibi Ruqayyah (RA) / بی بی رقیہؓ", "Ammi Ayesha (RA) / امی عائشہؓ", "Ammi Khadijah (RA) / امی خدیجہؓ"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 12. अबू ज़ुऐब की बेटी कौन थीं?\nابو زُویب کی بیٹی کون تھی؟\nWho was the daughter of Abu Zu'aib?",
-    options: ["Halima (RA) / حلیمہؓ", "Shayma (RA) / شیماءؓ", "Umm Hani (RA) / اُمِّ ہانیؓ", "Mariya (RA) / ماریہؓ"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 13. हमारे नबी ﷺ ने पहली बार शाम (सीरिया) का सफ़र किस उम्र में किया?\nہمارے نبی ﷺ نے پہلی بار شام (سوریہ) کا سفر کس عمر میں کیا؟\nAt what age did our Prophet ﷺ travel to Syria for the first time?",
-    options: ["12 years / 12 سال", "8 years / 8 سال", "5 years / 5 سال", "25 years / 25 سال"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 14. हमारे नबी ﷺ 12 साल की उम्र में बकरियां चराने लगे थे।\nکیا ہمارے نبی ﷺ 12 سال کی عمر میں بکریاں چرانا شروع کر دی تھیں؟\nDid our Prophet ﷺ start herding goats at the age of 12?",
-    options: ["True / सही", "False / ग़लत"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 15. अरब में हुरमत वाले 5 महीने थे।\nعرب میں حرمت والے 5 مہینے تھے۔\nThere were five sacred months in Arabia.",
-    options: ["True / सही", "False / ग़लत"],
+    question_text: "Question 7. नबी ﷺ की वफ़ात के बाद शाम की तरफ़ लश्कर किसने भेजा?\nنبی ﷺ کی وفات کے بعد شام کی طرف لشکر کس نے بھیجا؟\nWho sent the army towards Syria after the death of the Prophet ﷺ?",
+    options: ["Hazrat Umar (RA) / حضرت عمرؓ", "Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Usman (RA) / حضرت عثمانؓ", "Hazrat Ali (RA) / حضرت علیؓ"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 16. हिल्फ़ुलफ़ज़ूल के वक़्त हमारे नबी ﷺ की उम्र 16 साल थी।\nکیا حلفُ الفضول کے وقت ہمارے نبی ﷺ کی عمر 16 سال تھی؟\nWas our Prophet ﷺ 16 years old at the time of Hilf al-Fudul?",
-    options: ["True / सही", "False / ग़लत"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 17. हमारे नबी ﷺ ने 25 साल की उम्र में तिजारत शुरू की।\nکیا ہمارے نبی ﷺ نے 25 سال کی عمر میں تجارت شروع کی؟\nDid our Prophet ﷺ start trading at the age of 25?",
-    options: ["True / सही", "False / ग़लत"],
+    question_text: "Question 8. ईरानियों के ख़िलाफ़ हज़रत ख़ालिद बिन वलीद को सिपाहसालार बनाकर किसने भेजा?\nایرانیوں کے خلاف حضرت خالد بن ولید کو سپہ سالار بنا کر کس نے بھیجا؟\nWho sent Hazrat Khalid bin Waleed as commander-in-chief against the Iranians?",
+    options: ["Hazrat Usman (RA) / حضرت عثمانؓ", "Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Umar (RA) / حضرت عمرؓ", "Nabi ﷺ / نبی ﷺ"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 18. हमारे नबी ﷺ ने 25 साल की उम्र में हज़रत अबू तालिब के साथ तिजारत शुरू की।\nکیا ہمارے نبی ﷺ نے 25 سال کی عمر میں حضرت ابو طالبؓ کے ساتھ تجارت شروع کی؟\nDid our Prophet ﷺ start trading with Abu Talib at the age of 25?",
-    options: ["True / सही", "False / ग़लत"],
+    question_text: "Question 9. शामियों के ख़िलाफ़ हज़रत ख़ालिद बिन वलीद को सिपाहसालार बनाकर किसने भेजा?\nشامیوں کے خلاف حضرت خالد بن ولید کو سپہ سالار بنا کر کس نے بھیجا؟\nWho sent Hazrat Khalid bin Waleed as commander-in-chief against the Syrians?",
+    options: ["Hazrat Usman (RA) / حضرت عثمانؓ", "Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Umar (RA) / حضرت عمرؓ", "Nabi ﷺ / نبی ﷺ"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 19. नस्तूर हमारे नबी ﷺ को पहचान गया था।\nکیا نسطور ہمارے نبی ﷺ کو پہچان گیا تھا؟\nDid Nastur recognize our Prophet ﷺ?",
-    options: ["True / सही", "False / ग़लत"],
+    question_text: "Question 10. हज़रत अबू बकर (रज़ि॰) की वफ़ात कितनी उम्र में हुई?\nحضرت ابو بکر کی وفات کتنی عمر میں ہوئی؟\nAt what age did Hazrat Abu Bakr pass away?",
+    options: ["62 years / 62 سال", "65 years / 65 سال", "63 years / 63 سال", "64 years / 64 سال"],
+    correct_answer_index: 2,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 11. सारा किनकी माँ थीं?\nسارہ کس کی ماں تھیں؟\nWhose mother was Sara?",
+    options: ["Hazrat Ismail (AS) / حضرت اسماعیل", "Hazrat Ibrahim (AS) / حضرت ابراہیم", "Hazrat Ishaq (AS) / حضرت اسحاق", "Hazrat Isa (AS) / حضرت عیسیٰ"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 20. हज़रत अबू तालिब ने हमारे नबी ﷺ को तिजारत का मशवरा दिया था।\nکیا حضرت ابو طالبؓ نے ہمارے نبی ﷺ کو تجارت کا مشورہ دیا تھا؟\nDid Abu Talib advise our Prophet ﷺ to engage in trade?",
-    options: ["True / सही", "False / ग़लत"],
+    question_text: "Question 12. हज़रत हाजरा सफ़ा और मरवा पहाड़ों के बीच क्यों दौड़ी थीं?\nحضرت ہاجرہ صفا اور مروہ پہاڑوں کے درمیان کیوں دوڑی تھیں؟\nWhy did Hazrat Hajra run between the hills of Safa and Marwa?",
+    options: ["Khane ke liye / کھانے کے لیے", "Janwar se bachne ke liye / جانور سے بچنے کے لیے", "Pani ke liye / پانی کے لیے", "Sardi se bachne ke liye / سردی سے بچنے کے لیے"],
+    correct_answer_index: 2,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 13. ज़माना-ए-जाहिलियत में एक सफ़ेद ऊँट की क़ीमत क्या थी?\nزمانۂ جاہلیت میں ایک سفید اونٹ کی قیمت کیا تھی؟\nWhat was the price of a white camel during the Age of Ignorance (Jahiliyyah)?",
+    options: ["1 Bora Anaj / ایک بوری اناج", "1 Aurat / ایک عورت", "5 horses / پانچ گھوڑے", "2 Aurtein / دو عورتیں"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 14. इनमें से फ़िरऔन की बेटी कौन थी?\nان میں سے فرعون کی بیٹی کون تھی؟\nWho among these was Pharaoh's daughter?",
+    options: ["Sara / سارا", "Hajra / حاجرہ", "Asiya / آسیہ", "Ziya / ضیا"],
+    correct_answer_index: 1,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 15. हज़रत हाजरा के पास सबसे पहले कौन सा क़बीला आया?\nحضرت ہاجرہ کے پاس سب سے پہلے کون سا قبیلہ آیا؟\nWhich tribe came to Hazrat Hajra first?",
+    options: ["Banu Najjar / بنو نجار", "Banu Hashim / بنو ہاشم", "Banu Asad / بنو اسد", "Banu Jurhum / بنو جرہم"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 16. मक्के में सबसे पहला बुत कौन लाया?\nمکہ میں سب سے پہلا بت کون لایا؟\nWho brought the first idol to Mecca?",
+    options: ["Amr bin Madi / عمرو بن مادی", "Amr ibn Luhayy / عمرو بن لُحَی", "Abu Jahl / ابو جہل", "Abu Lahab / ابو لہب"],
+    correct_answer_index: 1,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 17. मक्के में सबसे पहली इमारत किसने बनवाई?\nمکہ میں سب سے پہلی عمارت کس نے بنوائی؟\nWho built the first building in Mecca?",
+    options: ["Qusayy / قصیّ", "Kaʿb / کاب", "Hashim / ہاشم", "Abdul Muttalib / عبدالمطلب"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 18. दारुन्नदवा की तामीर किसने करवाई?\nدار الندوہ کی تعمیر کس نے کرائی؟\nWho had the construction of Dar al-Nadwa done?",
+    options: ["Hashim / ہاشم", "Abdul Muttalib / عبدالمطلب", "Qusayy / قصیّ", "Hazrat Umar (RA) / حضرت عمرؓ"],
+    correct_answer_index: 2,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 19. हाशिम किसके बेटे थे?\nہاشم کس کے بیٹے تھے؟\nWho was Hashim's father?",
+    options: ["Abd al-Dar / عبدالدار", "Murrah / مرہ", "Abu Talib / ابو طالب", "Abd Manaf / عبد مناف"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 20. क़ुरैश के क़ाफ़िलों को लूट से बचाने के लिए पॉलिसी किसने बनाई?\nقریش کے قافلوں کو لوٹ سے بچانے کے لئے پالیسی کس نے بنائی؟\nWho made the policy to protect the Quraysh caravans from looting?",
+    options: ["Qusayy / قصیّ", "Abd al-Dar / عبدالدار", "Abd al-Dar / عبدالدار", "Abdul Muttalib / عبدالمطلب"],
+    correct_answer_index: 1,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 21. इराक़ को फ़तह करने की मुहिम किसने शुरू की?\nعراق کو فتح کرنے کی مہم کس نے شروع کی؟\nWho initiated the campaign to conquer Iraq?",
+    options: ["Amr ibn al-Aas / عمرو ابن العاص", "Suraqa / سراقہ", "Sharjeel bin Hasna / شرجیل بن حسنہ", "Muthanna bin Haritha / مثنی بن حارثہ"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 22. हमारे नबी ﷺ के हिजरत के साथी कौन थे?\nہمارے نبی ﷺ کے ہجرت کے ساتھی کون تھے؟\nWho was the companion of our Prophet ﷺ during the Hijrah (migration)?",
+    options: ["Hazrat Ali (RA) / حضرت علیؓ", "Abd al-Dar / عبدالدار", "Hazrat Usman (RA) / حضرت عثمانؓ", "Hazrat Umar (RA) / حضرت عمرؓ"],
+    correct_answer_index: 1,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 23. इस्लाम के पहले मुजद्दिद कौन थे?\nاسلام کے پہلے مجدّد کون تھے؟\nWho was the first Mujaddid in Islam?",
+    options: ["Abd al-Dar / عبدالدار", "Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Ali (RA) / حضرت علیؓ", "Hazrat Umar (RA) / حضرت عمرؓ"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 24. हमारे नबी ﷺ किस दिन पैदा हुए?\nہمارے نبی ﷺ کس دن پیدا ہوئے؟\nOn which day was our Prophet ﷺ born?",
+    options: ["Sunday / اتوار", "Friday / جمعہ", "Saturday / ہفتہ", "Monday / پیر"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 25. दाई हलीमा किस क़बीले से ताल्लुक रखती थीं?\nدائی حلیمہ کس قبیلے سے تعلق رکھتی تھیں؟\nWhich tribe did Halima (the wet nurse) belong to?",
+    options: ["Banu Asad / بنو اسد", "Banu Jurhum / بنو جرہم", "Taghlib / تغلب", "Banu Najjar / بنو نجار"],
     correct_answer_index: 0,
     time_limit: 15
   }
