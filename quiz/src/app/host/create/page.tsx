@@ -25,140 +25,140 @@ export default function CreateHost() {
 const questions = [
   {
     quiz_id: quiz.id,
-    question_text: "Question 1. हमारे नबी ﷺ ने पहली बार परदेस का सफ़र किस उम्र में किया?\nہمارے نبی ﷺ نے پہلی بار پردیس کا سفر کس عمر میں کیا؟\nAt what age did our Prophet ﷺ travel abroad for the first time?",
-    options: ["12", "9", "8", "25"],
+    question_text: "Question 1. उम्मुल हिन्द किनकी कुन्नियत है?\nاُمُّ الہِند کِن کی کُنیت ہے؟\nWhose kunyah is \"Umm al-Hind\"?",
+    options: ["Ammi Khadijah (RA) / امی خدیجہؓ", "Ammi Ayesha (RA) / امی عائشہؓ", "Mariyam (AS) / مریم علیہا السلام", "Bibi Fatima (RA) / بی بی فاطمہؓ"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 2. बहीरा कहाँ का रहने वाला था?\nبہیرہ کہاں کا رہنے والا تھا؟\nWhere was Bahera a resident of?",
-    options: ["Arab / عرب", "Yemen / یمن", "Syria / سوریہ", "Egypt / مصر"],
+    question_text: "Question 2. शेब-ए-अबू तालिब में क़ैद रहने की वजह से इनमें किनका इंतक़ाल हुआ?\nشِعبِ ابی طالب میں محصور رہنے کی وجہ سے اِن میں سے کِن کا انتقال ہوا؟\nWhich of the following passed away due to the hardships of being confined in the Valley of Abu Talib (Shi'b Abi Talib)?",
+    options: ["Ammi Ayesha (RA) / امی عائشہؓ", "Bibi Zainab (RA) / بی بی زینبؓ", "Ammi Khadijah (RA) / امی خدیجہؓ", "Bibi Fatima (RA) / بی بی فاطمہؓ"],
     correct_answer_index: 2,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 3. हमारे नबी ﷺ ने बकरियां किस उम्र में चराना शुरू कीं?\nہمارے نبی ﷺ نے بکریاں کس عمر میں چرانا شروع کیں؟\nAt what age did our Prophet ﷺ start herding goats?",
-    options: ["10", "11", "12", "13"],
+    question_text: "Question 3. अल्लाह ने इनमें से किनको सलाम भेजा?\nاللہ تعالیٰ نے اِن میں سے کِن کو سلام بھیجا؟\nTo which of the following did Allah send greetings (Salam)?",
+    options: ["Mariyam (AS) / مریم علیہا السلام", "Asiya / آسیہ", "Bibi Fatima (RA) / بی بی فاطمہؓ", "Ammi Khadijah (RA) / امی خدیجہؓ"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 4. काबे से ताल्लुक रखने वाले ओहदों पर कौन फ़ाइज़ थे?\nکعبہ سے تعلق رکھنے والے عہدوں پر کون فائز تھے؟\nWho held the positions associated with the Kaaba?",
+    options: ["Ahle Yasrab / اہلِ یثرب", "Ahle Saqeef / اہلِ ثقیف", "Ahle Taif / اہلِ طائف", "Ahle Makka / اہلِ مکہ"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 5. बाकूम कौन था?\nباقوم کون تھا؟\nWho was Baqum?",
+    options: ["Commander / کمانڈر", "Soldier / سپاہی", "Carpenter / بڑھئی", "Mason (Rajgeer) / راج گیر"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 6. सुलेह कौन था?\nصلیح کون تھا؟\nWho was Sulayh?",
+    options: ["Commander / کمانڈر", "Soldier / سپاہی", "Carpenter / بڑھئی", "Mason (Rajgeer) / راج گیر"],
     correct_answer_index: 2,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 4. बचपन में काबे की दीवार की तामीर के दौरान हमारे नबी ﷺ क्यों बेहोश हुए?\nبچپن میں خانۂ کعبہ کی دیوار کی تعمیر کے دوران ہمارے نبی ﷺ بے ہوش کیوں ہوئے؟\nWhy did our Prophet ﷺ faint during the reconstruction of the wall of the Kaaba in his childhood?",
-    options: ["Garmi se / گرمی سے", "Sharm se / شرم سے", "Thakan se / تھکن سے", "Sardi se / سردی سے"],
+    question_text: "Question 7. बाबुस्सफ़ा क्या है?\nبابُ الصفا کیا ہے؟\nWhat is Bab al-Safa?",
+    options: ["Ek pahar / ایک پہاڑ", "Ek imarat / ایک عمارت", "Ek qila / ایک قلعہ", "Ek darwaza / ایک دروازہ"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 8. पहले खलीफा कौन थे जिन्हें अमीरुल मुमिनीन कहा गया?\nامیر المومنین کہلانے والا پہلا خلیفہ کون تھا؟\nWho was the first Caliph to be called Ameerul Mumineen?",
+    options: ["Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Umar (RA) / حضرت عمرؓ", "Hazrat Usman (RA) / حضرت عثمانؓ", "Hazrat Hassan (RA) / حضرت حسنؓ"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 5. हमारे नबी ﷺ ने तीर-अंदाज़ी कब सीखी?\nہمارے نبی ﷺ نے تیر اندازی کب سیکھی؟\nAt what age did our Prophet ﷺ learn archery?",
-    options: ["Bachpan me / بچپن میں", "Nojawani me / نوجوانی میں", "Shadi ke bad / شادی کے بعد", "Nabuvat ke bad / نبوت کے بعد"],
-    correct_answer_index: 1,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 6. फ़िजार की जंग के वक़्त हमारे नबी ﷺ की उम्र क्या थी?\nفِجَار کی جنگ کے وقت ہمارے نبی ﷺ کی عمر کیا تھی؟\nHow old was our Prophet ﷺ at the time of the Fijar War?",
-    options: ["20", "25", "40", "16"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 7. अम्मी ख़दीजा से हमारे नबी ﷺ का शजरा किस पुश्त में जाकर मिलता था?\nاُمّ المؤمنین حضرت خدیجہؓ سے ہمارے نبی ﷺ کا شجرۂ نسب کس پشت میں جا کر ملتا تھا؟\nIn which generation did the lineage of our Prophet ﷺ meet that of Umm al-Mu'minin Hazrat Khadijah (RA)?",
-    options: ["5", "6", "4", "8"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 8. अम्मी ख़दीजा के वालिद का क्या नाम था?\nحضرت خدیجہؓ کے والد کا کیا نام تھا؟\nWhat was the name of Hazrat Khadijah's (RA) father?",
-    options: ["Abdullah / عبداللہ", "Hajr / ہجر", "Ubaida / عبیدہ", "Khuvailad / خویلد"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 9. अम्मी ख़दीजा का सामान लेकर हमारे नबी ﷺ किस मुल्क गए?\nحضرت خدیجہؓ کا سامان لے کر ہمارے نبی ﷺ کس ملک گئے تھے؟\nTo which country did our Prophet ﷺ travel with Hazrat Khadijah's (RA) merchandise?",
-    options: ["Ethiopia / حبشہ", "Syria / سوریہ", "Iran / ایران", "Palestine / فلسطین"],
-    correct_answer_index: 1,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 10. शाम (सीरिया) के सफ़र पर हमारे नबी ﷺ को दोबारा किसने पहचाना?\nشام (سوریہ) کے سفر میں ہمارے نبی ﷺ کو دوسری بار کس نے پہچانا؟\nWho recognized our Prophet ﷺ for the second time during the journey to Syria?",
-    options: ["Nastoor / نسطور", "Buhera / بہیرہ", "Jarjees / جرجیس", "Kais / قیس"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 11. अम्मी ख़दीजा का लक़ब क्या था?\nامّی خدیجہؓ کا لقب کیا تھا؟\nWhat was the title (laqab) of Ammi Khadijah (RA)?",
-    options: ["Ummul Hind / اُمّ الہند", "Umme Abeeh / اُمِّ ابیہ", "Umme Kulsum / اُمِّ کلثوم", "Tahera / طاہرہ"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 12. अम्मी ख़दीजा की सहेली कौन थीं?\nامّی خدیجہؓ کی سہیلی کون تھیں؟\nWho was the friend of Mother Khadijah (RA)?",
-    options: ["Nafeesa / نفیسہ", "Mariyam / مریم", "Asiya / آسیہ", "Fatima / فاطمہ"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 13. अम्मी ख़दीजा और हमारे नबी ﷺ के निकाह में महर क्या था?\nحضرت خدیجہؓ اور ہمارے نبی ﷺ کے نکاح میں مہر کیا تھا؟\nWhat was the mahr (dower) in the marriage of Ammi Khadijah (RA) and our Prophet Muhammad ﷺ?",
-    options: ["40 bakriyan / 40 بکریاں", "152.5 tole chandi / 152.5 تولہ چاندی", "20 camels / 20 اونٹ", "100 Dirham / 100 درہم"],
+    question_text: "Question 9. किस खलीफा ने हज़रत ख़ालिद बिन वलीद को सिपाहसालारी के ओहदे से माज़ूल कर के हज़रत अबू उबैद को नया सिपाहसालार मुक़र्रर किया?\nکس خلیفہ نے حضرت خالد بن ولید کو کمانڈر انچیف کے عہدے سے ہٹا کر حضرت ابو عبید کو نیا کمانڈر ان چیف مقرر کیا؟\nWhich Caliph terminated Hazrat Khalid bin Waleed from the post of Commander in chief and appointed Hazrat Abu Ubaid as new Commander in chief?",
+    options: ["Hazrat Ali (RA) ne / حضرت علیؓ نے", "Hazrat Abu Bakr (RA) ne / حضرت ابوبکرؓ نے", "Hazrat Umar (RA) ne / حضرت عمرؓ نے", "Hazrat Muawiya (RA) ne / حضرت معاویہؓ نے"],
     correct_answer_index: 2,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 14. चार अज़ीम औरतों में से इनमें से कौन नहीं है?\nچار عظیم عورتوں میں سے ان میں سے کون نہیں ہے؟\nWho is not among the four greatest women?",
-    options: ["Fatima (RA) / فاطمہؓ", "Khadijah (RA) / خدیجہؓ", "Mariyam (AS) / مریم علیہا السلام", "Hajra (AS) / حاجرہ علیہا السلام"],
-    correct_answer_index: 3,
+    question_text: "Question 10. किस खलीफा को ग़नी का ख़िताब दिया गया?\nکس خلیفہ کو غنی کا خطاب دیا گیا؟\nWhich Caliph was given the Title of Ghani?",
+    options: ["Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Usman (RA) / حضرت عثمانؓ", "Hazrat Ali (RA) / حضرت علیؓ", "Hazrat Usman (RA) / حضرت عثمانؓ"],
+    correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 15. अल्लाह ने किनके बारे में कहा कि वह मुझसे ख़ुश है कि नहीं?\nاللہ تعالیٰ نے کن کے بارے میں فرمایا کہ کیا وہ مجھ سے راضی ہے یا نہیں؟\nAbout whom did Allah say, \"Is she pleased with Me or not?\"",
-    options: ["Asiya / آسیہ", "Mariyam (AS) / مریم علیہا السلام", "Khadijah (RA) / خدیجہؓ", "Fatima (RA) / فاطمہؓ"],
+    question_text: "Question 11. हज़रत अबू बकर (रज़ि॰) का ताल्लुक किस क़बीले से था?\nحضرت ابوبکر رضی اللہ عنہ کا تعلق کس قبیلے سے تھا؟\nHazrat Abu Bakr (RA) belonged to which Tribe?",
+    options: ["Banu Kureza / بنو قریظہ", "Banu Taim / بنو تیم", "Banu Aas / بنو عاص", "Banu Hashim / بنو ہاشم"],
+    correct_answer_index: 1,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 12. काबे की तामीर के वक़्त हमारे नबी ﷺ की उम्र क्या थी?\nکعبہ کی تعمیر کے وقت ہمارے نبی ﷺ کی عمر کیا تھی؟\nHow old was our Prophet ﷺ at the time of the reconstruction of the Kaaba?",
+    options: ["40", "25", "35", "45"],
     correct_answer_index: 2,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 16. मैसरा अम्मी ख़दीजा का ग़ुलाम नहीं था।\nمیسرہ امّ المؤمنین حضرت خدیجہؓ کا غلام نہیں تھا؟\nWas Maysarah not the servant of Ammi Khadijah (RA)?",
+    question_text: "Question 13. हिजर-ए-अस्वद का इख़्तिलाफ़ हमारे नबी ﷺ ने नहीं सुलझाया था।\nکیا حجرِ اسود کے بارے میں ہونے والے اختلاف کو ہمارے نبی ﷺ نے حل نہیں کیا تھا؟\nDidn't our Prophet ﷺ resolve the dispute over the Black Stone (Hajar al-Aswad)?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 17. नस्तूर यहूदी था।\nنَسطور یہودی تھا۔\nWas Nastur a Jew?",
+    question_text: "Question 14. हमारे नबी ﷺ से पहले हज़रत इब्राहीम (अ॰) के दीन को मानने वाले मक्के में बहुत से लोग थे।\nہمارے نبی ﷺ سے پہلے مکہ میں حضرت ابراہیمؑ کے دین کو ماننے والے بہت سے لوگ تھے۔\nBefore our Prophet ﷺ, there were many people in Makkah who followed the religion of Prophet Ibrahim (AS).",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 18. अम्मी ख़दीजा का पैग़ाम लेकर नफ़ीसा गई थीं।\nحضرت خدیجہؓ کا پیغام لے کر نفیسہؓ گئی تھیں۔\nNafisah (RA) went with Ammi Khadijah's (RA) message.",
+    question_text: "Question 15. ग़ार-ए-हिरा मक्के से 6 दूर है।\nغار حرا مکہ سے 6 دور ہے؟\nGhar-e-Hira is 6 (units) away from Makkah.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 19. हमारे नबी ﷺ और अम्मी ख़दीजा के निकाह का ख़ुत्बा हज़रत अबू तालिब ने नहीं दिया था।\nہمارے نبی ﷺ اور امّ المؤمنین حضرت خدیجہؓ کے نکاح کا خطبہ حضرت ابو طالبؓ نے نہیں دیا تھا؟\nDid Abu Talib (RA) not deliver the marriage sermon (khutbah) at the marriage of our Prophet ﷺ and Ammi Khadijah (RA)?",
+    question_text: "Question 16. क्या अबुल आस अम्मी ख़दीजा के भांजे थे?\nکیا ابوالعاص امی خدیجہؓ کے بھانجے تھے؟\nWas Abul Aas the nephew of Ummi Khadijah (RA)?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 17. हज़रत ज़ैद (रज़ि॰) के दादा का नाम शुरहाबील था।\nکیا حضرت زیدؓ کے دادا کا نام شرحبیل تھا؟\nWas Hazrat Zayd's (RA) grandfather's name Sharhabil?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 18. क्या हज़रत जफ़र (रज़ि॰) को हज़रत अब्बास (रज़ि॰) ने पाला था?\nکیا حضرت جعفرؓ کی پرورش حضرت عباسؓ نے کی تھی؟\nWas Hazrat Ja'far (RA) raised by Hazrat Abbas (RA)?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 19. हमारे नबी ﷺ को ख़्याली ख़्वाब नज़र आते थे।\nکیا ہمارے نبی ﷺ کو خیالی خواب نظر آتے تھے؟\nDid our Prophet ﷺ see imaginary dreams?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 20. हमारे नबी ﷺ को अमीन का लक़ब नबूवत के बाद मिला।\nکیا ہمارے نبی ﷺ کو امین کا لقب نبوت کے بعد ملا؟\nDid our Prophet ﷺ receive the title \"Al-Ameen\" after Prophethood?",
+    question_text: "Question 20. क्या हमारे नबी ﷺ ग़ार में सच्चाई की तलाश में नहीं जाते थे?\nکیا ہمارے نبی ﷺ غار میں سچائی کی تلاش میں نہیں جاتے تھے؟\nDid our Prophet ﷺ not go to the cave in search of the truth?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 15
