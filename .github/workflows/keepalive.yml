@@ -1,0 +1,18 @@
+name: Keepalive
+
+# Pings the deployed /api/keepalive endpoint every 3 days
+# so Supabase does not auto-pause the project.
+on:
+  schedule:
+    - cron: '0 12 */3 * *'   # 12:00 UTC every 3rd day of the month
+  workflow_dispatch:          # allow manual runs from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping keepalive endpoint
+        run: |
+          curl --fail --show-error --silent \
+               --retry 3 --retry-delay 10 --max-time 30 \
+               https://quiz-game-zvz6.vercel.app/api/keepalive
