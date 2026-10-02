@@ -109,63 +109,56 @@ const questions = [
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 13. ज़मज़म की खुदाई अब्दुल मुत्तलिब ने नहीं की।\nعبدالمطلب نے زمزم کے کنویں کی کھدائی نہیں کی۔\nAbdul Muttalib did not dig (re-discover) the well of Zamzam.",
+    question_text: "Question 13. पहला हज हज़रत इब्राहिम (अ॰) और हज़रत इस्माइल (अ॰) ने किया।\nپہلا حج حضرت ابراہیمؑ اور حضرت اسماعیلؑ نے ادا کیا۔\nThe first Hajj was performed by Hazrat Ibrahim (AS) and Hazrat Ismail (AS).",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 14. पहला हज हज़रत इब्राहिम (अ॰) और हज़रत इस्माइल (अ॰) ने किया।\nپہلا حج حضرت ابراہیمؑ اور حضرت اسماعیلؑ نے ادا کیا۔\nThe first Hajj was performed by Hazrat Ibrahim (AS) and Hazrat Ismail (AS).",
+    question_text: "Question 14. क्या हज़रत अब्दुल्लाह भी ज़बीह कहलाते हैं?\nکیا حضرت عبداللہ کو بھی ذبیح کہا جاتا ہے؟\nIs Hazrat Abdullah also called \"Zabih\"?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 15. क्या हज़रत अब्दुल्लाह भी ज़बीह कहलाते हैं?\nکیا حضرت عبداللہ کو بھی ذبیح کہا جاتا ہے؟\nIs Hazrat Abdullah also called \"Zabih\"?",
-    options: ["True / सही", "False / ग़लत"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 16. क्या हज़रत अब्दुल्लाह के बदले 10 ऊँटों की क़ुर्बानी दी गई?\nکیا حضرت عبداللہ کے بدلے 10 اونٹوں کی قربانی دی گئی؟\nWere 10 camels sacrificed in place of Hazrat Abdullah?",
+    question_text: "Question 15. क्या हज़रत अब्दुल्लाह के बदले 10 ऊँटों की क़ुर्बानी दी गई?\nکیا حضرت عبداللہ کے بدلے 10 اونٹوں کی قربانی دی گئی؟\nWere 10 camels sacrificed in place of Hazrat Abdullah?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 17. क्या ज़मज़म की खुदाई में लोहे के हिरन निकले?\nکیا زمزم کی کھدائی کے دوران لوہے کے ہرن نکلے تھے؟\nDid iron deer come out during the excavation of Zamzam?",
+    question_text: "Question 16. क्या ज़मज़म की खुदाई में लोहे के हिरन निकले?\nکیا زمزم کی کھدائی کے دوران لوہے کے ہرن نکلے تھے؟\nDid iron deer come out during the excavation of Zamzam?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 18. दारुन्नदवा की तामीर हज़रत हाशिम ने नहीं कराई।\nحضرت ہاشم نے دارالندوہ کی تعمیر نہیں کروائی۔\nHazrat Hashim did not construct Dar al-Nadwa.",
+    question_text: "Question 17. दारुन्नदवा की तामीर हज़रत हाशिम ने नहीं कराई।\nحضرت ہاشم نے دارالندوہ کی تعمیر نہیں کروائی۔\nHazrat Hashim did not construct Dar al-Nadwa.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 19. मक्का वालों को पक्की इमारतें बनाने का हुक्म कुसई ने दिया।\nقصی نے مکہ والوں کو پکی عمارتیں بنانے کا حکم دیا۔\nQusai instructed the people of Makkah to build permanent (solid) houses.",
+    question_text: "Question 18. मक्का वालों को पक्की इमारतें बनाने का हुक्म कुसई ने दिया।\nقصی نے مکہ والوں کو پکی عمارتیں بنانے کا حکم دیا۔\nQusai instructed the people of Makkah to build permanent (solid) houses.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 20. जब हज़रत अब्दुल मुत्तलिब ने ज़मज़म की खुदाई शुरू की तब उनके 10 बेटे थे।\nجب حضرت عبدالمطلب نے زمزم کی کھدائی شروع کی تو اُن کے 10 بیٹے تھے۔\nWhen Hazrat Abdul Muttalib began the excavation of Zamzam, he had 10 sons.",
+    question_text: "Question 19. जब हज़रत अब्दुल मुत्तलिब ने ज़मज़म की खुदाई शुरू की तब उनके 10 बेटे थे।\nجب حضرت عبدالمطلب نے زمزم کی کھدائی شروع کی تو اُن کے 10 بیٹے تھے۔\nWhen Hazrat Abdul Muttalib began the excavation of Zamzam, he had 10 sons.",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 21. हज़रत इस्माइल (अ॰) रसूल थे।\nحضرت اسماعیلؑ رسول تھے۔\nHazrat Ismail (AS) was a Messenger (Rasool).",
+    question_text: "Question 20. हज़रत इस्माइल (अ॰) रसूल थे।\nحضرت اسماعیلؑ رسول تھے۔\nHazrat Ismail (AS) was a Messenger (Rasool).",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 0,
     time_limit: 15
