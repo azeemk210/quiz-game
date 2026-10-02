@@ -25,107 +25,149 @@ export default function CreateHost() {
 const questions = [
   {
     quiz_id: quiz.id,
-    question_text: "Question 1. हमारे नबी ﷺ पर नबूवत की शुरुआत किस तरह हुई?\nہمارے نبی ﷺ پر نبوت کی ابتدا کس طرح ہوئی؟\nHow did prophethood begin for our Prophet ﷺ?",
-    options: ["Ilham se / الہام سے", "Vahi se / وحی سے", "Sachche Khuvab se / سچے خواب سے", "Khayal se / خیال سے"],
+    question_text: "Question 1. वादी-ए-बतहा किस जगह का नाम था?\nوادیِ بطحاء کس جگہ کا نام تھا؟\nWhat place was Wadi-e-Batha the name of?",
+    options: ["Yasrab / یثرب", "Madeena / مدینہ", "Makka / مکہ", "Taif / طائف"],
     correct_answer_index: 2,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 2. हमारे नबी ﷺ ने अपनी कैफ़ियत सबसे पहले किनसे ज़ाहिर की?\nہمارے نبی ﷺ نے اپنی کیفیت سب سے پہلے کن سے ظاہر کی؟\nTo whom did our Prophet ﷺ first disclose his condition?",
-    options: ["Abu Talib se / ابو طالب سے", "Hazrat Abu Bakr (RA) se / حضرت ابوبکرؓ سے", "Ammi Ayesha (RA) se / امی عائشہؓ سے", "Ammi Khadijah (RA) se / امی خدیجہؓ سے"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 3. सबसे पहले वही किस महीने में आई?\nسب سے پہلے وحی کس مہینے میں آئی؟\nIn which month did the first revelation come?",
-    options: ["Ramzan me / رمضان میں", "Moharram me / محرم میں", "Shaban me / شعبان میں", "Rajab me / رجب میں"],
-    correct_answer_index: 0,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 4. दुनिया में फ़िलहाल किस फ़रिश्ते का काम ख़त्म हो चुका है?\nدنیا میں فی الحال کس فرشتے کا کام ختم ہو چکا ہے؟\nWhich angel's duty in the world has been completed so far?",
-    options: ["Mekail (AS) / میکائیل علیہ السلام", "Jibreel (AS) / جبرئیل علیہ السلام", "Israfeel (AS) / اسرافیل علیہ السلام", "Izrail (AS) / عزرائیل علیہ السلام"],
+    question_text: "Question 2. हज़रत इब्राहिम (अ॰) की दूसरी बीवी कौन थीं?\nحضرت ابراہیم علیہ السلام کی دوسری بیوی کون تھیں؟\nWho was the second wife of Hazrat Ibrahim (AS)?",
+    options: ["Sara / سارہ", "Hajra / ہاجرہ", "Samra / سمرہ", "Tuba / طوبیٰ"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 5. हमारे नबी ﷺ को सबसे पहले नबूवत की मुबारकबाद किसने दी?\nہمارے نبی ﷺ کو سب سے پہلے نبوت کی مبارک باد کس نے دی؟\nWho was the first person to congratulate our Prophet ﷺ on his Prophethood?",
-    options: ["Ammi Ayesha (RA) / امی عائشہؓ", "Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Hazrat Ali (RA) / حضرت علیؓ", "Ammi Khadijah (RA) / امی خدیجہؓ"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 6. सबसे पहले ईमान किसने क़ुबूल किया?\nسب سے پہلے ایمان کس نے قبول کیا؟\nWho accepted Islam first?",
-    options: ["Ammi Khadijah (RA) / امی خدیجہؓ", "Hazrat Ali (RA) / حضرت علیؓ", "Hazrat Abu Bakr (RA) / حضرت ابوبکرؓ", "Zaid bin Haris (RA) / زید بن حارثؓ"],
+    question_text: "Question 3. हज़रत इब्राहिम (अ॰) के दूसरे बेटे कौन थे?\nحضرت ابراہیم علیہ السلام کے دوسرے بیٹے کون تھے؟\nWho was the second son of Hazrat Ibrahim (AS)?",
+    options: ["Ismail (AS) / اسماعیل علیہ السلام", "Ishaq (AS) / اسحاق علیہ السلام", "Yusuf (AS) / یوسف علیہ السلام", "None of these / ان میں سے کوئی نہیں"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 7. क़ुरैश की तरफ़ से होने वाले ज़ुल्मो-सितम की पेशेनगोई किसने की?\nقریش کی طرف سے ہونے والے ظلم و ستم کی پیشگوئی کس نے کی؟\nWho foretold the persecution and oppression that would be inflicted by the Quraysh?",
-    options: ["Usman bin Haris / عثمان بن حارث", "Ubaid bin Jhash / عبید بن جحش", "Varka bin Nofil / ورقہ بن نوفل", "Zaid bin Nofil / زید بن نوفل"],
-    correct_answer_index: 2,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 8. वही कितनी दफ़ा रुकी?\nوحی کتنی دفعہ رکی؟\nHow many times did the revelation stop?",
-    options: ["2", "1", "3", "5"],
+    question_text: "Question 4. हज़रत इस्माइल (अ॰) की शादी किस क़बीले में हुई?\nحضرت اسماعیلؑ کی شادی کس قبیلے میں ہوئی؟\nIn which tribe did Hazrat Ismail (AS) get married?",
+    options: ["Banu Jurhum / بنو جرہم", "Banu Asad / بنو اسد", "Banu Taim / بنو تیم", "Banu Adi / بنو عدی"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 9. हज़रत अली (रज़ि॰) ने किस उम्र में इस्लाम क़ुबूल किया?\nحضرت علیؓ نے کس عمر میں اسلام قبول کیا؟\nAt what age did Hazrat Ali (RA) accept Islam?",
-    options: ["8-9", "9-10", "10-11", "7-8"],
+    question_text: "Question 5. मक्के में सबसे पहला बुत कौन लाया?\nمکہ میں سب سے پہلا بت کون لایا؟\nWho brought the first idol to Makkah?",
+    options: ["Amr bin Madi / عمرو بن مادی", "Amr bin Luhai / عمرو بن لحی", "Abu Jahal / ابو جہل", "Abu Lahab / ابو لہب"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 10. हज़रत अली (रज़ि॰) के साथ किसने इस्लाम क़ुबूल किया?\nحضرت علیؓ کے ساتھ کس نے اسلام قبول کیا؟\nWho accepted Islam along with Hazrat Ali (RA)?",
-    options: ["Zaid bin Haris (RA) / زید بن حارثؓ", "Abu Talib / ابو طالب", "Abu Bakr (RA) / ابوبکرؓ", "Jafar / جعفر"],
+    question_text: "Question 6. मक्के में सबसे पहली इमारत किसने बनवाई?\nمکہ میں سب سے پہلی عمارت کس نے بنوائی؟\nWho built the first building in Makkah?",
+    options: ["Qusai / قصی", "Kaab / کعب", "Hashim / ہاشم", "Abdul Muttalib / عبدالمطلب"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 11. अशरा-ए-मुबश्शरा में कितने सहाबा (रज़ि॰) हैं?\nعشرۂ مبشرہ میں کتنے صحابہؓ ہیں؟\nHow many Companions (Sahaba) are there in Ashara-e-Mubashshara?",
-    options: ["9", "8", "11", "10"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 12. हज़रत जाफ़र (रज़ि॰) की परवरिश किसने की?\nحضرت جعفرؓ کی پرورش کس نے کی؟\nWho brought up Hazrat Ja'far (RA)?",
-    options: ["Janab Abu Talib / جنابِ ابو طالب", "Hazrat Hamza (RA) / حضرت حمزہؓ", "Nabi ﷺ / نبی ﷺ", "Hazrat Abbas (RA) / حضرت عباسؓ"],
-    correct_answer_index: 3,
-    time_limit: 15
-  },
-  {
-    quiz_id: quiz.id,
-    question_text: "Question 13. हज़रत उस्मान (रज़ि॰) किस क़बीले से ताल्लुक रखते थे?\nحضرت عثمانؓ کس قبیلے سے تعلق رکھتے تھے؟\nWhich tribe did Hazrat Usman (RA) belong to?",
-    options: ["Banu Umayya / بنو امیہ", "Taim / تیم", "Adi / عدی", "Banu / بنو"],
+    question_text: "Question 7. ज़मज़म के कुएँ को किसने पाटा था?\nزمزم کے کنویں کو کس نے پاٹا تھا؟\nWho filled up (buried) the well of Zamzam?",
+    options: ["Banu Jurhum / بنو جرہم", "Abraha / ابرہہ", "Hassan / حسان", "Rakhoon / رخون"],
     correct_answer_index: 0,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 14. क्या साबिक़ूनल अव्वलीन में हिजरत के बाद के सहाबा (रज़ि॰) आते हैं?\nکیا سابقون الاوّلین میں ہجرت کے بعد کے صحابہؓ بھی آتے ہیں؟\nAre the Companions (RA) who accepted Islam after the Hijrah also included among the Sabiqunal Awwaleen?",
+    question_text: "Question 8. ख़ाना-ए-काबा पर पहला हमला किसने किया?\nخانۂ کعبہ پر پہلا حملہ کس نے کیا؟\nWho made the first attack on the Kaaba?",
+    options: ["Abraha / ابرہہ", "Abu Tahir Qarmati / ابو طاہر قرمطی", "Namrood / نمرود", "Hassan / حسان"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 9. हज़रत इस्माइल (अ॰) के कितने बेटे थे?\nحضرت اسماعیلؑ کے کتنے بیٹے تھے؟\nHow many sons did Hazrat Ismail (AS) have?",
+    options: ["12", "2", "1", "7"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 10. ज़बीहुल्लाह कौन से नबी हैं?\nذبیح اللہ کون سے نبی کو کہا جاتا ہے؟\nWhich Prophet is known as \"Zabiullah\"?",
+    options: ["Hazrat Ishaq (AS) / حضرت اسحاقؑ", "Hazrat Musa (AS) / حضرت موسیٰؑ", "Hazrat Ibrahim (AS) / حضرت ابراہیمؑ", "Hazrat Ismail (AS) / حضرت اسماعیلؑ"],
+    correct_answer_index: 3,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 11. शैबा असल नाम किनका था?\nشیبہ اصل نام کس کا تھا؟\nWhose real name was Shaiba?",
+    options: ["Abdul Muttalib / عبدالمطلب", "Abu Talib / ابو طالب", "Hashim / ہاشم", "Abd Manaf / عبد مناف"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 12. ज़मज़म की खुदाई अब्दुल मुत्तलिब ने की।\nعبدالمطلب نے زمزم کے کنویں کی کھدائی کی۔\nAbdul Muttalib dug (re-discovered) the well of Zamzam.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 13. ज़मज़म की खुदाई अब्दुल मुत्तलिब ने नहीं की।\nعبدالمطلب نے زمزم کے کنویں کی کھدائی نہیں کی۔\nAbdul Muttalib did not dig (re-discover) the well of Zamzam.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 14. पहला हज हज़रत इब्राहिम (अ॰) और हज़रत इस्माइल (अ॰) ने किया।\nپہلا حج حضرت ابراہیمؑ اور حضرت اسماعیلؑ نے ادا کیا۔\nThe first Hajj was performed by Hazrat Ibrahim (AS) and Hazrat Ismail (AS).",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 15. क्या हज़रत अब्दुल्लाह भी ज़बीह कहलाते हैं?\nکیا حضرت عبداللہ کو بھی ذبیح کہا جاتا ہے؟\nIs Hazrat Abdullah also called \"Zabih\"?",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 16. क्या हज़रत अब्दुल्लाह के बदले 10 ऊँटों की क़ुर्बानी दी गई?\nکیا حضرت عبداللہ کے بدلے 10 اونٹوں کی قربانی دی گئی؟\nWere 10 camels sacrificed in place of Hazrat Abdullah?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
     time_limit: 15
   },
   {
     quiz_id: quiz.id,
-    question_text: "Question 15. क्या साबिक़ूनल अव्वलीन की तादाद 10 है?\nکیا سابقون الاوّلین کی تعداد 10 ہے؟\nAre there 10 Sabiqunal Awwaleen?",
+    question_text: "Question 17. क्या ज़मज़म की खुदाई में लोहे के हिरन निकले?\nکیا زمزم کی کھدائی کے دوران لوہے کے ہرن نکلے تھے؟\nDid iron deer come out during the excavation of Zamzam?",
     options: ["True / सही", "False / ग़लत"],
     correct_answer_index: 1,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 18. दारुन्नदवा की तामीर हज़रत हाशिम ने नहीं कराई।\nحضرت ہاشم نے دارالندوہ کی تعمیر نہیں کروائی۔\nHazrat Hashim did not construct Dar al-Nadwa.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 19. मक्का वालों को पक्की इमारतें बनाने का हुक्म कुसई ने दिया।\nقصی نے مکہ والوں کو پکی عمارتیں بنانے کا حکم دیا۔\nQusai instructed the people of Makkah to build permanent (solid) houses.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 20. जब हज़रत अब्दुल मुत्तलिब ने ज़मज़म की खुदाई शुरू की तब उनके 10 बेटे थे।\nجب حضرت عبدالمطلب نے زمزم کی کھدائی شروع کی تو اُن کے 10 بیٹے تھے۔\nWhen Hazrat Abdul Muttalib began the excavation of Zamzam, he had 10 sons.",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 1,
+    time_limit: 15
+  },
+  {
+    quiz_id: quiz.id,
+    question_text: "Question 21. हज़रत इस्माइल (अ॰) रसूल थे।\nحضرت اسماعیلؑ رسول تھے۔\nHazrat Ismail (AS) was a Messenger (Rasool).",
+    options: ["True / सही", "False / ग़लत"],
+    correct_answer_index: 0,
     time_limit: 15
   }
 ];
